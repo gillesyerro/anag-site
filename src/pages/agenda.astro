@@ -1,55 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
 
-const events = [
-  {
-    date: "7 au 12 juillet 2026",
-    type: "Pèlerinage",
-    title: "Pèlerinage des Antilles Guyane à Lourdes",
-    desc: "Sous la présidence de Mgr David Macaire, archevêque de Martinique. Thème : « Je te salue, Marie, comblée de grâce, le Seigneur est avec toi ».",
-    lieu: "Sanctuaire de Lourdes",
-    href: "/pelerinages",
-    cta: "S'inscrire",
-    featured: true,
-  },
-  {
-    date: "11 novembre 2026",
-    type: "Rassemblement",
-    title: "Rassemblement national Antilles-Guyane",
-    desc: "Le temps fort de l'année : plus de 3 000 fidèles originaires des Antilles-Guyane se rassemblent autour de l'Eucharistie. Messe présidée par plusieurs évêques de Guadeloupe, Martinique, Guyane et la Réunion.",
-    lieu: "Église Saint-Sulpice, Paris (13h-18h)",
-    affiche: "/images/photos/affiche-rassemblement-programme.jpg",
-    afficheAlt: "Programme du rassemblement national Antilles-Guyane 2026",
-  },
-  {
-    date: "Décembre 2026",
-    type: "Célébration",
-    title: "Chanté Nwèl",
-    desc: "Veillée de chants traditionnels de Noël avec l'ANAG et les paroisses Saint-François d'Assise et Sainte-Colette. Messe anticipée 18h30, Chanté Nwèl 19h30. Repas offert par l'ANAG, apportez boissons et desserts.",
-    lieu: "Crypte de Saint-François d'Assise, 7 rue de Mouzaïa, 75019 Paris",
-  },
-  {
-    date: "22 mai 2026",
-    type: "Commémoration",
-    title: "Abolition de l'esclavage",
-    desc: "Célébration eucharistique en mémoire des victimes de l'esclavage et en action de grâce pour l'abolition.",
-    lieu: "Paris (à confirmer)",
-  },
-  {
-    date: "Chaque dimanche",
-    type: "Liturgie",
-    title: "Messes dominicales",
-    desc: "Messes animées par la communauté antillo-guyanaise dans différentes paroisses de métropole.",
-    lieu: "Paris et Île-de-France",
-  },
-  {
-    date: "Régulièrement",
-    type: "Chœur",
-    title: "Ensemble Vocal Tehillah",
-    desc: "Chœur polyphonique liturgique francilien porté par des voix des Antilles et de Guyane. Recrutement permanent (sopranes, altos, ténors, basses) et instrumentistes (piano, batterie, basse, trompette). Direction : Ludovic Celma.",
-    lieu: "5 bis rue de Mouzaïa, 75019 Paris",
-  },
-];
+const events = await getCollection("events");
+
+const typeOrder = ["Pèlerinage", "Rassemblement", "Célébration", "Commémoration", "Liturgie", "Chœur"];
+events.sort((a, b) => {
+  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+  if (a.data.dateSort && b.data.dateSort) return a.data.dateSort.getTime() - b.data.dateSort.getTime();
+  if (a.data.dateSort) return -1;
+  if (b.data.dateSort) return 1;
+  const ta = typeOrder.indexOf(a.data.type);
+  const tb = typeOrder.indexOf(b.data.type);
+  return (ta === -1 ? 99 : ta) - (tb === -1 ? 99 : tb);
+});
+
+const rendered = await Promise.all(
+  events.map(async (e) => ({ ...e, Content: (await render(e)).Content }))
+);
 ---
 
 <Layout title="Agenda — ANAG">
@@ -66,27 +34,29 @@ const events = [
 
   <section class="py-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-      {events.map((e) => (
-        <article class={`rounded-lg p-8 border-l-4 ${e.featured ? "bg-anag-gold/10 border-anag-gold shadow-md" : "bg-white border-anag-blue shadow-sm"}`}>
+      {rendered.map((e) => (
+        <article class={`rounded-lg p-8 border-l-4 ${e.data.featured ? "bg-anag-gold/10 border-anag-gold shadow-md" : "bg-white border-anag-blue shadow-sm"}`}>
           <div class="flex flex-wrap items-start justify-between gap-4 mb-3">
             <div>
-              <p class="text-xs font-bold uppercase tracking-wider text-anag-red">{e.type}</p>
-              <h3 class="text-2xl font-bold text-anag-blue-dark mt-1">{e.title}</h3>
+              <p class="text-xs font-bold uppercase tracking-wider text-anag-red">{e.data.type}</p>
+              <h3 class="text-2xl font-bold text-anag-blue-dark mt-1">{e.data.title}</h3>
             </div>
-            <div class={`px-4 py-2 rounded-md text-sm font-bold ${e.featured ? "bg-anag-gold text-anag-blue-dark" : "bg-anag-cream text-anag-blue-dark"}`}>
-              {e.date}
+            <div class={`px-4 py-2 rounded-md text-sm font-bold ${e.data.featured ? "bg-anag-gold text-anag-blue-dark" : "bg-anag-cream text-anag-blue-dark"}`}>
+              {e.data.date}
             </div>
           </div>
-          <p class="text-slate-700 mb-3 leading-relaxed">{e.desc}</p>
-          <p class="text-sm text-slate-500">📍 {e.lieu}</p>
-          {e.href && (
-            <a href={e.href} class="inline-block mt-4 text-anag-blue font-semibold hover:underline">
-              {e.cta ?? "En savoir plus"} →
+          <div class="text-slate-700 mb-3 leading-relaxed prose prose-sm max-w-none prose-p:my-0">
+            <e.Content />
+          </div>
+          <p class="text-sm text-slate-500">📍 {e.data.lieu}</p>
+          {e.data.href && (
+            <a href={e.data.href} class="inline-block mt-4 text-anag-blue font-semibold hover:underline">
+              {e.data.cta ?? "En savoir plus"} →
             </a>
           )}
-          {e.affiche && (
-            <a href={e.affiche} target="_blank" rel="noopener" class="block mt-5 rounded-md overflow-hidden border border-anag-blue/10 shadow-sm hover:shadow-md transition-shadow">
-              <img src={e.affiche} alt={e.afficheAlt} class="w-full h-auto" loading="lazy" />
+          {e.data.affiche && (
+            <a href={e.data.affiche} target="_blank" rel="noopener" class="block mt-5 rounded-md overflow-hidden border border-anag-blue/10 shadow-sm hover:shadow-md transition-shadow">
+              <img src={e.data.affiche} alt={e.data.afficheAlt} class="w-full h-auto" loading="lazy" />
             </a>
           )}
         </article>

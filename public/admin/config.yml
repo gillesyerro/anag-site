@@ -1,0 +1,47 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/photos"
+public_folder: "/images/photos"
+
+locale: "fr"
+
+collections:
+  - name: "events"
+    label: "Agenda — Événements"
+    label_singular: "Événement"
+    folder: "src/content/events"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - { name: "title", label: "Titre", widget: "string" }
+      - { name: "date", label: "Date (texte affiché)", widget: "string", hint: "Ex : 11 novembre 2026, ou « Chaque dimanche »" }
+      - { name: "dateSort", label: "Date de tri (pour l'ordre chronologique)", widget: "datetime", required: false, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", hint: "Optionnel. Laisser vide pour les événements récurrents." }
+      - { name: "type", label: "Type", widget: "select", options: ["Pèlerinage", "Rassemblement", "Célébration", "Commémoration", "Liturgie", "Chœur", "Autre"] }
+      - { name: "lieu", label: "Lieu", widget: "string" }
+      - { name: "featured", label: "Mettre en avant (fond doré)", widget: "boolean", default: false }
+      - { name: "href", label: "Lien associé (optionnel)", widget: "string", required: false, hint: "Ex : /pelerinages, ou https://…" }
+      - { name: "cta", label: "Texte du lien (optionnel)", widget: "string", required: false, default: "En savoir plus" }
+      - { name: "affiche", label: "Affiche / image (optionnel)", widget: "image", required: false, choose_url: false }
+      - { name: "afficheAlt", label: "Description de l'affiche (pour accessibilité)", widget: "string", required: false }
+      - { name: "body", label: "Description", widget: "markdown" }
+
+  - name: "galerie"
+    label: "Galerie — Photos"
+    label_singular: "Photo"
+    folder: "src/content/galerie"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{caption}}"
+    fields:
+      - { name: "image", label: "Photo", widget: "image", choose_url: false }
+      - { name: "caption", label: "Légende", widget: "string" }
+      - { name: "ordre", label: "Ordre d'affichage", widget: "number", default: 100, hint: "Plus petit = affiché en premier" }

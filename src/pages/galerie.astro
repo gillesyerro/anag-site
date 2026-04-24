@@ -1,24 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-const photos = [
-  { src: "/images/photos/choeur-tenue-blanche.jpg", caption: "Chœur de l'ANAG en tenue blanche" },
-  { src: "/images/photos/rassemblement-mains-levees.jpg", caption: "Acclamation lors du rassemblement" },
-  { src: "/images/photos/rassemblement-drapeaux.jpg", caption: "Rassemblement avec drapeaux des nations" },
-  { src: "/images/photos/chorale-repetition.jpg", caption: "Répétition de la chorale" },
-  { src: "/images/photos/rassemblement-groupe-1.jpg", caption: "Fidèles après la célébration" },
-  { src: "/images/photos/evenement-assemblee-piano.jpg", caption: "Louange en assemblée" },
-  { src: "/images/photos/assemblee-violoniste.jpg", caption: "Veillée musicale" },
-  { src: "/images/photos/solistes-chant.jpg", caption: "Chant en solistes" },
-  { src: "/images/photos/evenement-groupe-fideles.jpg", caption: "Groupe de fidèles de l'ANAG" },
-  { src: "/images/photos/rassemblement-groupe-2.jpg", caption: "Communauté réunie" },
-  { src: "/images/photos/affiche-chante-nwel.jpg", caption: "Affiche Chanté Nwèl" },
-  { src: "/images/photos/affiche-concert-cultures-foi.jpg", caption: "Affiche Concert Cultures & Foi" },
-  { src: "/images/photos/affiche-rassemblement-2025.jpg", caption: "Affiche Rassemblement 2025" },
-  { src: "/images/photos/affiche-toussaint-ransay.jpg", caption: "Toussaint avec Mgr Ransay" },
-  { src: "/images/photos/affiche-tehillah.jpg", caption: "Ensemble Vocal Tehillah" },
-  { src: "/images/affiche-lourdes-2026.png", caption: "Pèlerinage Lourdes 2026" },
-];
+const entries = await getCollection("galerie");
+const photos = entries
+  .sort((a, b) => a.data.ordre - b.data.ordre)
+  .map((e) => ({ src: e.data.image, caption: e.data.caption }));
 ---
 
 <Layout title="Galerie — ANAG">
