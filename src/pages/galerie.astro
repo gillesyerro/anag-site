@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const photos = [
+  { src: "/images/photos/choeur-tenue-blanche.jpg", caption: "Chœur de l'ANAG en tenue blanche" },
+  { src: "/images/photos/rassemblement-mains-levees.jpg", caption: "Acclamation lors du rassemblement" },
+  { src: "/images/photos/rassemblement-drapeaux.jpg", caption: "Rassemblement avec drapeaux des nations" },
+  { src: "/images/photos/chorale-repetition.jpg", caption: "Répétition de la chorale" },
+  { src: "/images/photos/rassemblement-groupe-1.jpg", caption: "Fidèles après la célébration" },
+  { src: "/images/photos/evenement-assemblee-piano.jpg", caption: "Louange en assemblée" },
+  { src: "/images/photos/assemblee-violoniste.jpg", caption: "Veillée musicale" },
+  { src: "/images/photos/solistes-chant.jpg", caption: "Chant en solistes" },
+  { src: "/images/photos/evenement-groupe-fideles.jpg", caption: "Groupe de fidèles de l'ANAG" },
+  { src: "/images/photos/rassemblement-groupe-2.jpg", caption: "Communauté réunie" },
+  { src: "/images/photos/affiche-chante-nwel.jpg", caption: "Affiche Chanté Nwèl" },
+  { src: "/images/photos/affiche-concert-cultures-foi.jpg", caption: "Affiche Concert Cultures & Foi" },
+  { src: "/images/photos/affiche-rassemblement-2025.jpg", caption: "Affiche Rassemblement 2025" },
+  { src: "/images/photos/affiche-toussaint-ransay.jpg", caption: "Toussaint avec Mgr Ransay" },
+  { src: "/images/photos/affiche-tehillah.jpg", caption: "Ensemble Vocal Tehillah" },
+  { src: "/images/affiche-lourdes-2026.png", caption: "Pèlerinage Lourdes 2026" },
+];
+---
+
+<Layout title="Galerie — ANAG">
+  <section class="relative bg-anag-blue-dark text-white py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-anag-blue-dark via-anag-blue to-anag-blue-dark"></div>
+    <svg class="absolute top-0 right-0 w-96 opacity-20" viewBox="0 0 200 200">
+      <polygon points="200,0 200,200 0,0" fill="#e4b73a" />
+    </svg>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-anag-gold font-semibold uppercase tracking-[0.2em] text-xs">Souvenirs</span>
+      <h1 class="text-4xl sm:text-6xl font-bold mt-3">Galerie</h1>
+      <div class="w-24 h-1 bg-anag-gold mt-5 mb-6"></div>
+      <p class="text-xl text-slate-200 max-w-3xl leading-relaxed">
+        Rassemblements, célébrations, chorales, pèlerinages : la vie de la communauté antillo-guyanaise en images.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gradient-to-b from-white to-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {photos.map((p) => (
+          <figure class="group relative aspect-square overflow-hidden rounded-lg bg-slate-100 shadow-sm hover:shadow-xl transition-shadow">
+            <img
+              src={p.src}
+              alt={p.caption}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              loading="lazy"
+            />
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-anag-blue-dark/90 via-anag-blue-dark/60 to-transparent p-4 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+              {p.caption}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

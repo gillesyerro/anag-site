@@ -1,0 +1,153 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact — ANAG">
+  <section class="bg-anag-blue-dark text-white py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-anag-gold font-semibold uppercase tracking-wider text-sm">Nous joindre</span>
+      <h1 class="text-4xl sm:text-5xl font-bold mt-2">Contact</h1>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-anag-blue-dark mb-6">Écrivez-nous</h2>
+          <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            class="space-y-5"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <div>
+              <label for="nom" class="block text-sm font-semibold text-slate-700 mb-1">Nom complet</label>
+              <input
+                type="text"
+                id="nom"
+                name="nom"
+                required
+                class="w-full px-4 py-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-anag-blue focus:border-anag-blue"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-semibold text-slate-700 mb-1">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-anag-blue focus:border-anag-blue"
+              />
+            </div>
+            <div>
+              <label for="sujet" class="block text-sm font-semibold text-slate-700 mb-1">Sujet</label>
+              <select
+                id="sujet"
+                name="sujet"
+                class="w-full px-4 py-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-anag-blue focus:border-anag-blue"
+              >
+                <option>Demande d'information générale</option>
+                <option>Pèlerinage à Lourdes</option>
+                <option>Rassemblement 11 novembre</option>
+                <option>Groupe de prière</option>
+                <option>Sacrements</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-semibold text-slate-700 mb-1">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                class="w-full px-4 py-3 border border-slate-300 rounded-md focus:ring-2 focus:ring-anag-blue focus:border-anag-blue"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="px-6 py-3 bg-anag-blue text-white font-bold rounded-md hover:bg-anag-blue-dark transition-colors"
+            >
+              Envoyer le message
+            </button>
+          </form>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-anag-cream rounded-lg p-6">
+            <h3 class="font-bold text-anag-blue-dark text-lg mb-4">Siège de l'Aumônerie</h3>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="text-xs uppercase font-semibold text-slate-500">Adresse</dt>
+                <dd class="text-slate-700">23 rue de la Paix<br />93500 Pantin</dd>
+              </div>
+              <div>
+                <dt class="text-xs uppercase font-semibold text-slate-500">Téléphone</dt>
+                <dd>
+                  <a href="tel:+33675405080" class="text-anag-blue hover:underline block">06 75 40 50 80</a>
+                  <a href="tel:+33642035238" class="text-anag-blue hover:underline block">06 42 03 52 38</a>
+                </dd>
+              </div>
+              <div>
+                <dt class="text-xs uppercase font-semibold text-slate-500">Email</dt>
+                <dd><a href="mailto:aumonerieag@gmail.com" class="text-anag-blue hover:underline">aumonerieag@gmail.com</a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="bg-white border border-anag-sand rounded-lg p-6">
+            <h3 class="font-bold text-anag-blue-dark text-lg mb-4">Contact pèlerinage Lourdes</h3>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="text-xs uppercase font-semibold text-slate-500">Email</dt>
+                <dd><a href="mailto:anag.lourdes@gmail.com" class="text-anag-blue hover:underline">anag.lourdes@gmail.com</a></dd>
+              </div>
+              <div>
+                <dt class="text-xs uppercase font-semibold text-slate-500">Téléphone (SMS)</dt>
+                <dd><a href="tel:+33671048830" class="text-anag-blue hover:underline">06 71 04 88 30</a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="bg-anag-blue-dark text-white rounded-lg p-6">
+            <h3 class="font-bold text-lg mb-4">Suivez-nous</h3>
+            <div class="space-y-3">
+              <a href="https://www.facebook.com/AumonerieAntillesGuyane/" target="_blank" rel="noopener" class="flex items-center gap-3 text-slate-200 hover:text-anag-gold">
+                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.79-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07" />
+                </svg>
+                <span>Aumonerieantillesguyane</span>
+              </a>
+              <a href="https://www.instagram.com/antillesguyaneaumonerie/" target="_blank" rel="noopener" class="flex items-center gap-3 text-slate-200 hover:text-anag-gold">
+                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07c-1.28.06-2.15.26-2.91.55-.79.3-1.46.72-2.13 1.38A5.88 5.88 0 0 0 .62 4.14c-.3.76-.5 1.63-.55 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.28.26 2.15.55 2.91.3.79.72 1.46 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.63.5 2.91.55C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.28-.06 2.15-.26 2.91-.55.79-.3 1.46-.72 2.13-1.38a5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.63.55-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.28-.26-2.15-.55-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.62c-.76-.3-1.63-.5-2.91-.55C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.4-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/>
+                </svg>
+                <span>antillesguyaneaumonerie</span>
+              </a>
+              <div class="pt-3 border-t border-white/10">
+                <div class="flex items-start gap-3 text-slate-200">
+                  <svg class="w-5 h-5 flex-shrink-0 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.465 3.488"/>
+                  </svg>
+                  <div>
+                    <p class="font-semibold text-white">Chaîne WhatsApp</p>
+                    <p class="text-xs text-slate-300 mt-1">Rejoignez la chaîne pour recevoir annonces et moments de prière.</p>
+                  </div>
+                </div>
+                <div class="mt-4 grid grid-cols-2 gap-3">
+                  <div class="bg-white rounded-md p-2 flex items-center justify-center">
+                    <img src="/images/photos/qr-whatsapp.jpg" alt="QR code chaîne WhatsApp ANAG" class="w-full h-auto" loading="lazy" />
+                  </div>
+                  <img src="/images/photos/affiche-whatsapp-jesus.jpg" alt="Affiche chaîne WhatsApp ANAG" class="w-full h-auto rounded-md object-cover" loading="lazy" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

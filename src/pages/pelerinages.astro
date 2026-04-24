@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Pèlerinages — Lourdes 2026 — ANAG">
+  <section class="relative bg-gradient-to-br from-anag-blue-dark to-anag-blue text-white py-20 overflow-hidden">
+    <div class="absolute inset-0 opacity-15 bg-cover bg-center" style="background-image: url('/images/grotte-lourdes.jpg')"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-anag-gold font-semibold uppercase tracking-wider text-sm">Pèlerinage 2026</span>
+      <h1 class="text-4xl sm:text-5xl font-bold mt-2">Pèlerinage des Antilles Guyane à Lourdes</h1>
+      <p class="text-xl text-slate-200 mt-6">Du mardi 7 au dimanche 12 juillet 2026</p>
+      <p class="italic text-anag-gold mt-2 text-lg">
+        « Je te salue, Marie, comblée de grâce, le Seigneur est avec toi »
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-2 prose prose-lg max-w-none">
+          <h2 class="font-display text-3xl font-bold text-anag-blue-dark mb-4">Vivre Lourdes avec la communauté antillo-guyanaise</h2>
+          <p class="text-slate-700 leading-relaxed">
+            Chaque année, l'Aumônerie Nationale Antilles Guyane rassemble des centaines de fidèles
+            pour un pèlerinage à Lourdes. Six jours de prière, de chants, de démarches spirituelles,
+            de célébrations et de rencontres fraternelles, au rythme des Antilles-Guyane.
+          </p>
+          <p class="text-slate-700 leading-relaxed">
+            Le pèlerinage 2026 se déroulera <strong>du mardi 7 au dimanche 12 juillet 2026</strong>,
+            présidé par <strong>Mgr David Macaire</strong>, archevêque de Martinique.
+          </p>
+
+          <h3 class="font-display text-2xl font-bold text-anag-blue-dark mt-10 mb-4">Temps forts du pèlerinage</h3>
+          <ul class="space-y-2 text-slate-700">
+            <li>Messes internationales à la Basilique Saint-Pie-X</li>
+            <li>Procession mariale aux flambeaux</li>
+            <li>Chemin de croix des pèlerins</li>
+            <li>Procession eucharistique</li>
+            <li>Bain aux piscines et passage à la Grotte</li>
+            <li>Messes animées avec chants et rythmes des Antilles-Guyane</li>
+            <li>Veillée de prière de la communauté ANAG</li>
+          </ul>
+
+          <h3 class="font-display text-2xl font-bold text-anag-blue-dark mt-10 mb-4">Pour qui ?</h3>
+          <p class="text-slate-700 leading-relaxed">
+            Ce pèlerinage est ouvert à tous : familles, personnes seules, jeunes, malades et hospitaliers.
+            Des forfaits adaptés sont proposés par l'organisateur Bipel Pèlerinages (transport, hébergement,
+            participation aux liturgies).
+          </p>
+
+          <h3 class="font-display text-2xl font-bold text-anag-blue-dark mt-10 mb-4">Organisation</h3>
+          <div class="flex items-center gap-6 not-prose bg-anag-cream rounded-lg p-6">
+            <img src="/images/logo-bipel.jpg" alt="Bipel Pèlerinages" class="h-16 w-auto" />
+            <div>
+              <p class="text-sm text-slate-600">Organisé par</p>
+              <p class="font-bold text-anag-blue-dark text-lg">Bipel Pèlerinages</p>
+              <p class="text-sm text-slate-600">Sous le patronage de l'Aumônerie Nationale Antilles Guyane</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="space-y-6">
+          <div class="bg-anag-gold/20 border-2 border-anag-gold rounded-lg p-6">
+            <p class="text-xs font-bold uppercase tracking-wider text-anag-red mb-2">Inscriptions</p>
+            <h3 class="font-bold text-anag-blue-dark text-xl mb-4">S'inscrire en ligne</h3>
+            <p class="text-sm text-slate-700 mb-4">
+              Programme détaillé, tarifs et inscription directement sur la plateforme de l'organisateur :
+            </p>
+            <a
+              href="https://bipel-agence.bipel.com/antillais-lourdes2026"
+              target="_blank"
+              rel="noopener"
+              class="block text-center w-full px-4 py-3 bg-anag-red text-white font-bold rounded-md hover:bg-anag-red/90 transition-colors"
+            >
+              Inscriptions Bipel 2026
+            </a>
+          </div>
+
+          <div class="bg-white border border-anag-sand rounded-lg p-6">
+            <h3 class="font-bold text-anag-blue-dark mb-4">Contact pèlerinage</h3>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="text-xs uppercase font-semibold text-slate-500">Email</dt>
+                <dd><a href="mailto:anag.lourdes@gmail.com" class="text-anag-blue hover:underline">anag.lourdes@gmail.com</a></dd>
+              </div>
+              <div>
+                <dt class="text-xs uppercase font-semibold text-slate-500">Téléphone (SMS)</dt>
+                <dd><a href="tel:+33671048830" class="text-anag-blue hover:underline">06 71 04 88 30</a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="bg-anag-blue-dark text-white rounded-lg p-6">
+            <h3 class="font-bold mb-2">Affiche officielle</h3>
+            <p class="text-sm text-slate-300 mb-4">Téléchargez et diffusez l'affiche du pèlerinage.</p>
+            <a
+              href="/images/affiche-lourdes-2026.png"
+              target="_blank"
+              class="inline-block text-anag-gold font-semibold hover:underline"
+            >
+              Voir l'affiche →
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-display text-3xl font-bold text-anag-blue-dark mb-4">Édition 2026 présidée par</h2>
+      <div class="inline-flex items-center gap-6 bg-white rounded-lg p-6 shadow-sm">
+        <img src="/images/mgr-macaire.jpg" alt="Mgr David Macaire" class="w-20 h-20 rounded-full object-cover" />
+        <div class="text-left">
+          <p class="font-bold text-anag-blue-dark text-lg">Mgr David Macaire</p>
+          <p class="text-slate-600">Archevêque de Martinique</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

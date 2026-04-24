@@ -1,0 +1,81 @@
+---
+const { pathname } = Astro.url;
+const nav = [
+  { href: "/", label: "Accueil" },
+  { href: "/a-propos", label: "Qui sommes-nous" },
+  { href: "/missions", label: "Nos missions" },
+  { href: "/agenda", label: "Agenda" },
+  { href: "/pelerinages", label: "Pèlerinages" },
+  { href: "/actualites", label: "Actualités" },
+  { href: "/galerie", label: "Galerie" },
+  { href: "/contact", label: "Contact" },
+];
+const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+---
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-anag-sand shadow-sm">
+  <div class="h-1 bg-gradient-to-r from-anag-blue via-anag-gold to-anag-red"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="/" class="flex items-center gap-3">
+        <img src="/images/logo-anag.png" alt="Aumônerie Nationale Antilles Guyane" class="h-14 w-auto" />
+        <span class="sr-only">Aumônerie Nationale Antilles Guyane</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1">
+        {nav.map((item) => (
+          <a
+            href={item.href}
+            class={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+              isActive(item.href)
+                ? "text-anag-blue bg-anag-cream"
+                : "text-slate-700 hover:text-anag-blue hover:bg-anag-cream/60"
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
+        <a
+          href="/don"
+          class="ml-2 px-4 py-2 text-sm font-semibold rounded-md bg-anag-red text-white hover:bg-anag-red/90 transition-colors"
+        >
+          Faire un don
+        </a>
+      </nav>
+
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden p-2 text-slate-700 hover:text-anag-blue"
+        aria-label="Menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <nav id="mobile-menu" class="lg:hidden hidden pb-4 space-y-1">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class={`block px-3 py-2 rounded-md text-base font-medium ${
+            isActive(item.href)
+              ? "text-anag-blue bg-anag-cream"
+              : "text-slate-700 hover:bg-anag-cream/60"
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href="/don" class="block px-3 py-2 rounded-md text-base font-semibold bg-anag-red text-white">
+        Faire un don
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => menu?.classList.toggle("hidden"));
+</script>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  variant?: "hero" | "section" | "footer";
+  class?: string;
+}
+const { variant = "hero", class: className = "" } = Astro.props;
+---
+
+{variant === "hero" && (
+  <svg
+    class={`absolute inset-0 w-full h-full pointer-events-none ${className}`}
+    preserveAspectRatio="none"
+    viewBox="0 0 1440 800"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    {/* Bande jaune diagonale — inspirée de l'affiche */}
+    <polygon points="0,120 900,0 960,80 0,220" fill="#e4b73a" opacity="0.95" />
+    <polygon points="0,250 1020,80 1080,160 0,340" fill="#1e4d9b" opacity="0.85" />
+    {/* Bande droite bas */}
+    <polygon points="1440,800 520,800 1440,680" fill="#e4b73a" opacity="0.9" />
+    <polygon points="1440,620 600,800 1440,560" fill="#c9233f" opacity="0.75" />
+  </svg>
+)}
+
+{variant === "section" && (
+  <svg
+    class={`absolute top-0 left-0 w-full pointer-events-none ${className}`}
+    preserveAspectRatio="none"
+    viewBox="0 0 1440 80"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <polygon points="0,0 1440,80 1440,0" fill="currentColor" />
+  </svg>
+)}
+
+{variant === "footer" && (
+  <svg
+    class={`absolute -top-px left-0 w-full pointer-events-none ${className}`}
+    preserveAspectRatio="none"
+    viewBox="0 0 1440 60"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <polygon points="0,60 1440,0 1440,60" fill="#e4b73a" />
+    <polygon points="0,60 1440,30 1440,60" fill="#0f2e5e" />
+  </svg>
+)}

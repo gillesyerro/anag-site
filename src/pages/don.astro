@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Faire un don — ANAG">
+  <section class="bg-gradient-to-br from-anag-red to-anag-red/80 text-white py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-white/80 font-semibold uppercase tracking-wider text-sm">Soutenir l'Aumônerie</span>
+      <h1 class="text-4xl sm:text-5xl font-bold mt-2">Faire un don</h1>
+      <p class="text-xl text-white/90 mt-6 max-w-3xl">
+        Par votre générosité, vous rendez possibles les pèlerinages, les rassemblements et
+        l'accompagnement pastoral de notre communauté.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white border-2 border-anag-gold rounded-lg p-8">
+          <div class="text-4xl mb-3">💳</div>
+          <h2 class="font-display text-2xl font-bold text-anag-blue-dark mb-3">Don en ligne</h2>
+          <p class="text-slate-600 mb-6">
+            Paiement sécurisé via HelloAsso, plateforme utilisée par la plupart des associations
+            catholiques. 100% de votre don nous parvient.
+          </p>
+          <a
+            href="#"
+            class="block w-full text-center px-6 py-3 bg-anag-red text-white font-bold rounded-md hover:bg-anag-red/90 transition-colors"
+          >
+            Donner via HelloAsso
+          </a>
+          <p class="text-xs text-slate-500 mt-3">
+            Lien HelloAsso à configurer par l'ANAG.
+          </p>
+        </div>
+
+        <div class="bg-anag-cream rounded-lg p-8">
+          <div class="text-4xl mb-3">✉️</div>
+          <h2 class="font-display text-2xl font-bold text-anag-blue-dark mb-3">Don par chèque</h2>
+          <p class="text-slate-700 mb-4">
+            À l'ordre de <strong>Aumônerie Nationale Antilles Guyane</strong>, à envoyer à :
+          </p>
+          <address class="not-italic bg-white rounded-md p-4 text-sm">
+            Aumônerie Nationale Antilles Guyane<br />
+            23 rue de la Paix<br />
+            93500 Pantin
+          </address>
+          <p class="text-sm text-slate-600 mt-4">
+            Joignez vos coordonnées pour recevoir un reçu fiscal.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-anag-blue-dark text-white rounded-lg p-8">
+        <h3 class="font-display text-xl font-bold mb-3">Défiscalisation</h3>
+        <p class="text-slate-200 leading-relaxed">
+          Les dons à l'Aumônerie ouvrent droit à une réduction d'impôt sur le revenu de 66 % du
+          montant versé, dans la limite de 20 % du revenu imposable (article 200 du CGI).
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

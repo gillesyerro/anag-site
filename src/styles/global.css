@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette inspirée de l'affiche Lourdes 2026 ANAG */
+  --color-anag-blue: #1e4d9b;
+  --color-anag-blue-dark: #0f2e5e;
+  --color-anag-gold: #e4b73a;
+  --color-anag-red: #c9233f;
+  --color-anag-cream: #faf6ed;
+  --color-anag-sand: #f4ead2;
+
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #1a1a1a;
+  background: #ffffff;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}

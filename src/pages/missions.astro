@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+
+const missions = [
+  {
+    icon: "heart",
+    title: "Accueil et écoute",
+    desc: "Une présence fraternelle pour chaque Antillais ou Guyanais arrivant ou vivant en métropole. L'aumônerie est un lieu où l'on peut être entendu, soutenu et orienté.",
+    color: "text-anag-red",
+  },
+  {
+    icon: "cross",
+    title: "Accompagnement spirituel",
+    desc: "Temps de prière, enseignements, retraites et accompagnement personnel. L'ANAG soutient la vie de foi de chacun.",
+    color: "text-anag-blue",
+  },
+  {
+    icon: "book",
+    title: "Formation",
+    desc: "Catéchèse, préparation aux sacrements, groupes de prière, formations bibliques et théologiques.",
+    color: "text-anag-gold",
+  },
+  {
+    icon: "church",
+    title: "Insertion dans les Églises locales",
+    desc: "Travail en lien avec les aumôneries diocésaines et les paroisses pour que chaque fidèle trouve sa place dans sa communauté locale.",
+    color: "text-anag-red",
+  },
+  {
+    icon: "candle",
+    title: "Célébrations et pèlerinages",
+    desc: "Messes dominicales, rassemblement national, pèlerinage annuel à Lourdes, Chanté Nwèl, commémoration de l'abolition de l'esclavage.",
+    color: "text-anag-blue",
+  },
+  {
+    icon: "users",
+    title: "Transmission culturelle",
+    desc: "Maintenir vivants les trésors spirituels et culturels des Antilles-Guyane au sein de l'Église en métropole.",
+    color: "text-anag-gold",
+  },
+];
+---
+
+<Layout title="Nos missions — ANAG">
+  <section class="relative bg-anag-blue-dark text-white py-24 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-anag-blue-dark via-anag-blue to-anag-blue-dark"></div>
+    <svg class="absolute top-0 right-0 w-96 opacity-20" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="200,0 200,200 0,0" fill="#e4b73a" />
+    </svg>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-anag-gold font-semibold uppercase tracking-[0.2em] text-xs">Ce que nous faisons</span>
+      <h1 class="text-4xl sm:text-6xl font-bold mt-3">Nos missions</h1>
+      <div class="w-24 h-1 bg-anag-gold mt-5 mb-6"></div>
+      <p class="text-xl text-slate-200 max-w-3xl leading-relaxed">
+        Accueillir, écouter, accompagner et former : quatre verbes au cœur de l'action de l'Aumônerie.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 bg-gradient-to-b from-white to-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {missions.map((m) => (
+          <div class="group relative bg-white border border-anag-sand rounded-xl p-8 hover:shadow-xl transition-all hover:-translate-y-1">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-anag-gold to-anag-red rounded-t-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div class={`inline-flex items-center justify-center w-14 h-14 rounded-lg bg-anag-cream ${m.color} mb-5 group-hover:scale-110 transition-transform`}>
+              <Icon name={m.icon as any} class="w-7 h-7" />
+            </div>
+            <h3 class="text-xl font-bold text-anag-blue-dark mb-3">{m.title}</h3>
+            <p class="text-slate-600 leading-relaxed">{m.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

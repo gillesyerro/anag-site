@@ -1,0 +1,62 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const articles = [
+  {
+    date: "Avril 2026",
+    title: "Pèlerinage 2026 à Lourdes : les inscriptions sont ouvertes",
+    excerpt: "Du 7 au 12 juillet 2026, rejoignez la communauté antillo-guyanaise à Lourdes, sous la présidence de Mgr David Macaire.",
+    img: "/images/vierge-lourdes.jpg",
+    href: "/pelerinages",
+  },
+  {
+    date: "Mars 2026",
+    title: "Préparation du Rassemblement du 11 novembre",
+    excerpt: "Les équipes préparent déjà la grande rencontre annuelle à Saint-Sulpice, qui réunira plus de 3 000 fidèles.",
+    img: "/images/cierges-lourdes.jpg",
+    href: "#",
+  },
+  {
+    date: "Février 2026",
+    title: "Chanté Nwèl : retour en images",
+    excerpt: "Retour sur les veillées de Noël organisées dans plusieurs paroisses d'Île-de-France et de province.",
+    img: "/images/hibiscus-rouge.jpg",
+    href: "#",
+  },
+  {
+    date: "Janvier 2026",
+    title: "Nouvelle année, nouvelles missions",
+    excerpt: "Le mot du P. Marcel Crepin, aumônier national, pour cette année pastorale 2025-2026.",
+    img: "/images/paysage-antilles.jpg",
+    href: "#",
+  },
+];
+---
+
+<Layout title="Actualités — ANAG">
+  <section class="bg-anag-blue-dark text-white py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="text-anag-gold font-semibold uppercase tracking-wider text-sm">Journal de l'aumônerie</span>
+      <h1 class="text-4xl sm:text-5xl font-bold mt-2">Actualités</h1>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        {articles.map((a) => (
+          <a href={a.href} class="group bg-white border border-anag-sand rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="aspect-[16/9] overflow-hidden">
+              <img src={a.img} alt={a.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-bold uppercase tracking-wider text-anag-red mb-2">{a.date}</p>
+              <h3 class="text-xl font-bold text-anag-blue-dark mb-2 group-hover:text-anag-blue transition-colors">{a.title}</h3>
+              <p class="text-slate-600">{a.excerpt}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
