@@ -1,6 +1,6 @@
 /* Service worker — met l'app en cache pour un fonctionnement hors-ligne.
    Pense à incrémenter CACHE_VERSION quand tu modifies les fichiers. */
-const CACHE_VERSION = "revise-v1";
+const CACHE_VERSION = "revise-v2";
 const ASSETS = [
   "./",
   "./index.html",

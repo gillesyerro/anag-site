@@ -56,15 +56,16 @@
   //  ÉCRAN D'ACCUEIL
   // ======================================================================
   let activeFilter = "Tout";
+  const FILTER_FIELD = window.FILTRE_PAR || "matiere";
 
-  function matieres() {
-    return ["Tout", ...Array.from(new Set(COURS.map((c) => c.matiere)))];
+  function filterValues() {
+    return ["Tout", ...Array.from(new Set(COURS.map((c) => c[FILTER_FIELD])))];
   }
 
   function renderFilters() {
     const box = $("#filters");
     box.innerHTML = "";
-    matieres().forEach((m) => {
+    filterValues().forEach((m) => {
       const chip = el("button", "chip" + (m === activeFilter ? " is-active" : ""), m);
       chip.type = "button";
       chip.addEventListener("click", () => { activeFilter = m; renderFilters(); renderCours(); });
@@ -75,10 +76,10 @@
   function renderCours() {
     const list = $("#cours-list");
     list.innerHTML = "";
-    const items = COURS.filter((c) => activeFilter === "Tout" || c.matiere === activeFilter);
+    const items = COURS.filter((c) => activeFilter === "Tout" || c[FILTER_FIELD] === activeFilter);
 
     if (!items.length) {
-      list.appendChild(el("p", null, "Aucun cours pour cette matière."));
+      list.appendChild(el("p", null, "Aucun cours ici."));
       return;
     }
 

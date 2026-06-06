@@ -1,7 +1,7 @@
 {
-  "name": "Révise — Quiz de révision",
-  "short_name": "Révise",
-  "description": "Réviser ses cours du collège sous forme de quiz à choix multiples.",
+  "name": "Révise Maths — Quiz de révision",
+  "short_name": "Révise Maths",
+  "description": "Réviser les maths du collège sous forme de quiz à choix multiples.",
   "lang": "fr",
   "start_url": "./index.html",
   "scope": "./",
