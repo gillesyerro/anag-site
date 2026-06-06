@@ -209,7 +209,7 @@ body {
 .btn:active { transform: scale(0.98); }
 .btn--primary { background: var(--primary); color: #fff; box-shadow: 0 8px 18px rgba(37, 99, 235, 0.38); }
 .btn--primary:disabled { opacity: 0.45; box-shadow: none; cursor: not-allowed; }
-.btn--ghost { background: transparent; color: #2d5bbf; }
+.btn--ghost { background: transparent; color: #cfe0fb; }
 
 /* ======================= ÉCRAN RÉSULTAT ======================= */
 #screen-result { background: linear-gradient(180deg, #1e3a8a 0%, #1d4ed8 60%, #2563eb 100%); color: #fff; }
