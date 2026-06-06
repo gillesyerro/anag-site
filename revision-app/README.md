@@ -1,9 +1,11 @@
-# 📐 Révise Maths — application iPhone de révision (quiz)
+# 📐 ClicMaths — application iPhone de révision (quiz)
 
-Petite application web **installable sur iPhone** (PWA) pour réviser les **maths
-du collège** (6ᵉ → 3ᵉ) sous forme de **quiz à choix multiples** : on choisit un
-chapitre, on répond aux questions, on a la correction immédiate et un score à la
-fin. Les meilleurs scores sont enregistrés sur l'appareil.
+Application web **installable sur iPhone** (PWA) aux couleurs de **clicmaths.fr**,
+pour réviser les **maths du collège** (6ᵉ → 3ᵉ) et le **Brevet** sous forme de
+**quiz à choix multiples** : on choisit un chapitre, on répond aux questions, on a
+la correction immédiate et un score à la fin. Un **compte à rebours jusqu'au
+Brevet** s'affiche sur l'accueil. Les meilleurs scores sont enregistrés sur
+l'appareil.
 
 **Chapitres inclus :** fractions, nombres relatifs, priorités opératoires,
 proportionnalité & pourcentages, théorème de Pythagore, calcul littéral,
@@ -66,6 +68,10 @@ Chaque cours ressemble à ceci :
 Les boutons de filtre en haut de l'app trient par **classe** (6ᵉ/5ᵉ/4ᵉ/3ᵉ),
 grâce au réglage `FILTRE_PAR = "niveau"` en bas du fichier. Mets `"matiere"` si
 tu préfères filtrer autrement.
+
+**Compte à rebours** : la date de l'épreuve est réglée par `BREVET_DATE` (format
+`"AAAA-MM-JJ"`) en bas de `data/cours.js`. Mets `""` pour masquer le compte à
+rebours.
 
 Après modification, pense à incrémenter `CACHE_VERSION` dans
 `service-worker.js` pour que la nouvelle version se charge sur les appareils

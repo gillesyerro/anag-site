@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
-  <title>Révise Maths — Quiz de révision</title>
-  <meta name="description" content="Application de révision des maths du collège sous forme de quiz." />
+  <title>ClicMaths — Révisions Brevet Maths</title>
+  <meta name="description" content="ClicMaths : réviser les maths du collège et le Brevet sous forme de quiz." />
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#4f46e5" />
+  <meta name="theme-color" content="#1d4ed8" />
 
   <!-- iPhone : installation sur l'écran d'accueil -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Révise Maths" />
+  <meta name="apple-mobile-web-app-title" content="ClicMaths" />
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
   <link rel="icon" type="image/png" href="icons/icon-192.png" />
 
@@ -27,9 +27,15 @@
       <header class="app-header">
         <div class="app-header__title">
           <span class="app-header__logo">📐</span>
-          <h1>Révise Maths</h1>
+          <h1>ClicMaths</h1>
         </div>
-        <p class="app-header__sub">Choisis un chapitre et teste-toi !</p>
+        <p class="app-header__sub">Révisions Brevet Maths · quiz</p>
+
+        <div class="countdown" id="countdown" hidden>
+          <span class="countdown__label">Brevet Maths · <span id="cd-date"></span></span>
+          <span class="countdown__big" id="cd-days">J−0</span>
+          <span class="countdown__sub" id="cd-sub">avant l'épreuve</span>
+        </div>
       </header>
 
       <div class="filters" id="filters" role="tablist" aria-label="Filtrer par matière"></div>

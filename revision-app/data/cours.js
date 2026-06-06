@@ -603,8 +603,13 @@ const COURS = [
    filtrer par matière à la place. */
 const FILTRE_PAR = "niveau";
 
+/* Date de l'épreuve du Brevet, affichée en compte à rebours sur l'accueil.
+   Format AAAA-MM-JJ. Mets "" (chaîne vide) pour masquer le compte à rebours. */
+const BREVET_DATE = "2026-06-30";
+
 // Rend les données accessibles à l'application.
 if (typeof window !== "undefined") {
   window.COURS = COURS;
   window.FILTRE_PAR = FILTRE_PAR;
+  window.BREVET_DATE = BREVET_DATE;
 }

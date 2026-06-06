@@ -1,14 +1,14 @@
 {
-  "name": "Révise Maths — Quiz de révision",
-  "short_name": "Révise Maths",
-  "description": "Réviser les maths du collège sous forme de quiz à choix multiples.",
+  "name": "ClicMaths — Révisions Brevet Maths",
+  "short_name": "ClicMaths",
+  "description": "Réviser les maths du collège et le Brevet sous forme de quiz à choix multiples.",
   "lang": "fr",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0f1024",
-  "theme_color": "#4f46e5",
+  "background_color": "#15264f",
+  "theme_color": "#1d4ed8",
   "icons": [
     {
       "src": "icons/icon-192.png",

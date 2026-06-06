@@ -245,8 +245,41 @@
   }
 
   // ======================================================================
+  //  COMPTE À REBOURS BREVET (style ClicMaths)
+  // ======================================================================
+  function renderCountdown() {
+    const box = $("#countdown");
+    const iso = window.BREVET_DATE;
+    if (!box || !iso) return; // masqué si pas de date
+    const target = new Date(iso + "T08:00:00");
+    if (isNaN(target)) return;
+
+    const today = new Date();
+    const d0 = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const d1 = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+    const days = Math.round((d1 - d0) / 86400000);
+
+    if (days < 0) return; // épreuve passée → on n'affiche rien
+
+    const dateStr = target.toLocaleDateString("fr-FR", {
+      weekday: "long", day: "numeric", month: "long", year: "numeric",
+    });
+    $("#cd-date").textContent = dateStr;
+
+    if (days === 0) {
+      $("#cd-days").textContent = "Jour J";
+      $("#cd-sub").textContent = "c'est aujourd'hui — bonne chance !";
+    } else {
+      $("#cd-days").textContent = "J−" + days;
+      $("#cd-sub").textContent = "avant l'épreuve";
+    }
+    box.hidden = false;
+  }
+
+  // ======================================================================
   //  DÉMARRAGE
   // ======================================================================
+  renderCountdown();
   renderFilters();
   renderCours();
 

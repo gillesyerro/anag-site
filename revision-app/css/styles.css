@@ -3,13 +3,14 @@
    ============================================================================ */
 
 :root {
-  --bg: #0f1024;
-  --bg-soft: #1a1b3a;
+  /* Palette ClicMaths (clicmaths.fr) — bleu royal */
+  --bg: #15264f;
+  --bg-soft: #1e3a8a;
   --card: #ffffff;
   --ink: #1e2030;
   --ink-soft: #5b5e76;
-  --primary: #4f46e5;
-  --primary-dark: #4338ca;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
   --good: #16a34a;
   --good-bg: #dcfce7;
   --bad: #dc2626;
@@ -31,7 +32,7 @@ html, body {
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--ink);
-  background: radial-gradient(120% 120% at 50% 0%, #2a2c6b 0%, var(--bg) 55%);
+  background: linear-gradient(180deg, #1e3a8a 0%, #1d4ed8 50%, #2563eb 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   overscroll-behavior-y: none;
@@ -52,7 +53,21 @@ body {
 .app-header__title { display: flex; align-items: center; justify-content: center; gap: 10px; }
 .app-header__logo { font-size: 30px; }
 .app-header h1 { margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.5px; }
-.app-header__sub { margin: 6px 0 0; color: #b9bbe6; font-size: 15px; }
+.app-header__sub { margin: 6px 0 0; color: #c3d6f7; font-size: 15px; }
+
+/* Carte compte à rebours Brevet (style ClicMaths) */
+.countdown {
+  margin: 18px auto 0;
+  max-width: 320px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  padding: 12px 18px 14px;
+  color: #fff;
+}
+.countdown__label { display: block; font-size: 11px; letter-spacing: 1px; font-weight: 700; color: #c3d6f7; text-transform: uppercase; }
+.countdown__big { display: block; font-size: 42px; font-weight: 800; line-height: 1.05; margin: 3px 0; letter-spacing: -1px; }
+.countdown__sub { display: block; font-size: 12px; letter-spacing: 1px; color: #c3d6f7; text-transform: uppercase; }
 
 .filters {
   display: flex;
@@ -66,8 +81,8 @@ body {
 .chip {
   flex: 0 0 auto;
   border: 0;
-  background: rgba(255, 255, 255, 0.1);
-  color: #d7d8f5;
+  background: rgba(255, 255, 255, 0.14);
+  color: #d3e2fb;
   padding: 9px 16px;
   border-radius: 999px;
   font-size: 14px;
@@ -124,8 +139,8 @@ body {
 }
 .cours-card__chev { color: #c7c9e0; font-size: 22px; flex: 0 0 auto; }
 
-.app-footer { text-align: center; color: #9698c9; font-size: 13px; padding: 4px 20px calc(var(--safe-bottom) + 20px); }
-.link-btn { background: none; border: 0; color: #8587d8; text-decoration: underline; cursor: pointer; font-size: 13px; padding: 6px; }
+.app-footer { text-align: center; color: #a8c0e8; font-size: 13px; padding: 4px 20px calc(var(--safe-bottom) + 20px); }
+.link-btn { background: none; border: 0; color: #bcd2f7; text-decoration: underline; cursor: pointer; font-size: 13px; padding: 6px; }
 
 /* ======================= ÉCRAN QUIZ ======================= */
 #screen-quiz { background: #f4f5fb; }
@@ -140,7 +155,7 @@ body {
   font-size: 17px; cursor: pointer; flex: 0 0 auto;
 }
 .progress { flex: 1; height: 8px; background: #e2e3f0; border-radius: 999px; overflow: hidden; }
-.progress__bar { height: 100%; width: 0; background: linear-gradient(90deg, #6366f1, #8b5cf6); border-radius: 999px; transition: width 0.3s ease; }
+.progress__bar { height: 100%; width: 0; background: linear-gradient(90deg, #60a5fa, #2563eb); border-radius: 999px; transition: width 0.3s ease; }
 .quiz-count { font-size: 14px; font-weight: 700; color: #6b6e8c; flex: 0 0 auto; min-width: 34px; text-align: right; }
 
 .quiz-body { flex: 1; padding: 18px 20px; max-width: 640px; width: 100%; margin: 0 auto; }
@@ -163,7 +178,7 @@ body {
   background: #eef0fb; color: var(--primary-dark);
   display: grid; place-items: center; font-weight: 800; font-size: 14px;
 }
-.choice.is-selected { border-color: var(--primary); background: #f3f2ff; }
+.choice.is-selected { border-color: var(--primary); background: #eaf1ff; }
 .choice.is-correct { border-color: var(--good); background: var(--good-bg); }
 .choice.is-correct .choice__letter { background: var(--good); color: #fff; }
 .choice.is-wrong { border-color: var(--bad); background: var(--bad-bg); }
@@ -192,12 +207,12 @@ body {
   transition: transform 0.1s, opacity 0.15s, background 0.15s;
 }
 .btn:active { transform: scale(0.98); }
-.btn--primary { background: var(--primary); color: #fff; box-shadow: 0 8px 18px rgba(79, 70, 229, 0.35); }
+.btn--primary { background: var(--primary); color: #fff; box-shadow: 0 8px 18px rgba(37, 99, 235, 0.38); }
 .btn--primary:disabled { opacity: 0.45; box-shadow: none; cursor: not-allowed; }
-.btn--ghost { background: transparent; color: #5557a8; }
+.btn--ghost { background: transparent; color: #2d5bbf; }
 
 /* ======================= ÉCRAN RÉSULTAT ======================= */
-#screen-result { background: radial-gradient(120% 120% at 50% 0%, #2a2c6b 0%, var(--bg) 60%); color: #fff; }
+#screen-result { background: linear-gradient(180deg, #1e3a8a 0%, #1d4ed8 60%, #2563eb 100%); color: #fff; }
 .result {
   flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center; padding: 40px 28px calc(var(--safe-bottom) + 28px); gap: 6px;
@@ -206,9 +221,9 @@ body {
 .result__emoji { font-size: 64px; animation: pop 0.35s ease; }
 .result__title { margin: 6px 0 2px; font-size: 26px; font-weight: 800; }
 .result__score { font-size: 56px; font-weight: 800; line-height: 1; margin: 8px 0 2px; }
-.result__total { color: #9698c9; font-size: 30px; }
-.result__pct { margin: 0; font-size: 18px; color: #c9caf2; font-weight: 700; }
-.result__msg { margin: 10px 0 4px; color: #b9bbe6; font-size: 15px; line-height: 1.5; }
+.result__total { color: #9db4e6; font-size: 30px; }
+.result__pct { margin: 0; font-size: 18px; color: #cfe0fb; font-weight: 700; }
+.result__msg { margin: 10px 0 4px; color: #c3d6f7; font-size: 15px; line-height: 1.5; }
 .result__best { min-height: 22px; font-size: 14px; color: #fcd34d; font-weight: 700; }
 .result__actions { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: 22px; }
 

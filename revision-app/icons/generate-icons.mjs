@@ -102,8 +102,8 @@ function encodePng(c) {
 // --- dessin de l'icône ---------------------------------------------------
 function drawIcon(size, { fullBleed = false } = {}) {
   const c = createCanvas(size);
-  // fond dégradé indigo -> violet
-  const top = [79, 70, 229], bot = [124, 58, 237];
+  // fond dégradé bleu ClicMaths (navy -> bleu royal)
+  const top = [30, 58, 138], bot = [37, 99, 235];
   for (let y = 0; y < size; y++) {
     const t = y / (size - 1);
     const col = [lerp(top[0], bot[0], t), lerp(top[1], bot[1], t), lerp(top[2], bot[2], t), 255];
@@ -149,13 +149,13 @@ function drawIcon(size, { fullBleed = false } = {}) {
       [cx + spineGap + s * 0.03, ly + s * 0.022],
     ], lineCol);
   }
-  // pastille verte avec coche en bas à droite
+  // pastille bleu clair avec coche en bas à droite
   const r = s * 0.16;
   const gx = cx + bw * 0.55, gy = cy + bh * 0.75;
-  const green = [34, 197, 94, 255];
+  const badge = [56, 189, 248, 255]; // bleu ciel ClicMaths
   for (let y = -r; y <= r; y++) {
     for (let x = -r; x <= r; x++) {
-      if (x * x + y * y <= r * r) setPx(c, Math.round(gx + x), Math.round(gy + y), green);
+      if (x * x + y * y <= r * r) setPx(c, Math.round(gx + x), Math.round(gy + y), badge);
     }
   }
   // coche blanche
