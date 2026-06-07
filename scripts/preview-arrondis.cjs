@@ -69,7 +69,7 @@ svg += txt(fx+s+14, fy+s+26, 'aire = 50 cm²', {size:26, fill:BLEU});
 
 // ---------- N° PAGE ----------
 svg += `<rect x="780" y="1370" width="70" height="60" rx="6" fill="none" stroke="${BLEU}" stroke-width="3"/>`;
-svg += txt(815, 1416, '3', {size:46, fill:BLEU, weight:700, anchor:'middle'});
+svg += txt(815, 1416, '2', {size:46, fill:BLEU, weight:700, anchor:'middle'});
 
 svg += `</svg>`;
 fs.writeFileSync('/tmp/arr.svg', svg);
