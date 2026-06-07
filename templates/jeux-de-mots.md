@@ -42,3 +42,9 @@ Le **Nom + Prénom** de l'en-tête est toujours un **jeu de mots** humoristique
 | LE TALENT | RESTE CACHÉ |
 | PAS INSPIRÉ | MAIS J'AI COP_É |
 | L'ESPOIR | FAIT VIVRE |
+
+## 5. Références / pop culture
+
+| Nom | Prénom |
+|-----|--------|
+| PARIS | EST MAGIQUE |
