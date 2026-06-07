@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copie basique d'élève — carrousel TikTok</title>
+  <style>
+    /* ============================================================
+       COPIE BASIQUE D'ÉLÈVE — format vertical TikTok (1080 x 1920)
+       En-tête simple : Nom Prénom / Classe / Note + commentaire
+       Fond : feuille quadrillée (petits carreaux) + marge rouge
+       --------------------------------------------------------------
+       POUR EXPORTER EN IMAGE :
+       - Ouvre la page, clic droit sur la feuille > "Capture" / screenshot
+       - ou Ctrl+P > Enregistrer en PDF, puis découpe en image
+       - La feuille fait pile 1080x1920 px (ratio 9:16 TikTok)
+       ============================================================ */
+
+    :root {
+      --bleu: #2342a8;
+      --rouge: #d11f1f;
+      --carreau: 30px;            /* taille d'un carreau */
+      --grille: #cdd7ee;          /* couleur du quadrillage */
+      --papier: #fdfdfb;          /* blanc cassé "vrai papier" */
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #c7ccd4;
+      font-family: "Comic Sans MS", "Segoe Print", "Bradley Hand", cursive;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* LA FEUILLE — 1080 x 1920 px (9:16) */
+    .feuille {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      background-color: var(--papier);
+      /* quadrillage petits carreaux */
+      background-image:
+        linear-gradient(to right, var(--grille) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grille) 1px, transparent 1px);
+      background-size: var(--carreau) var(--carreau);
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
+      overflow: hidden;
+    }
+
+    /* marge rouge verticale (à 3 carreaux du bord) */
+    .feuille::before {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      left: calc(var(--carreau) * 3);
+      width: 2px;
+      background: var(--rouge);
+    }
+    /* deux trous de classeur décoratifs */
+    .trou {
+      position: absolute;
+      left: 14px;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: #c7ccd4;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
+    }
+    .trou.h { top: 360px; }
+    .trou.b { bottom: 360px; }
+
+    /* ---------- EN-TÊTE manuscrit ---------- */
+    .entete {
+      position: absolute;
+      top: calc(var(--carreau) * 2);
+      left: calc(var(--carreau) * 4);
+      right: calc(var(--carreau) * 2);
+      color: var(--bleu);
+    }
+
+    .ligne {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      font-size: 40px;
+      margin-bottom: 18px;
+    }
+    .ligne .label { font-weight: 700; white-space: nowrap; }
+    .ligne .val {
+      flex: 1;
+      border-bottom: 2px dotted #9aa6c4;
+      min-height: 44px;
+    }
+    .ligne-nom { display: flex; gap: 40px; }
+    .ligne-nom > div { display: flex; align-items: baseline; gap: 12px; flex: 1; }
+    .ligne-nom .val { flex: 1; border-bottom: 2px dotted #9aa6c4; min-height: 44px; }
+
+    /* ---------- CASE NOTE (haut droite, encadré rouge) ---------- */
+    .note {
+      position: absolute;
+      top: calc(var(--carreau) * 2);
+      right: calc(var(--carreau) * 2);
+      width: 230px;
+      border: 3px solid var(--rouge);
+      border-radius: 8px;
+      padding: 14px 0 18px;
+      text-align: center;
+      color: var(--rouge);
+      background: rgba(255,255,255,.6);
+    }
+    .note .titre { font-size: 30px; font-weight: 800; letter-spacing: 1px; }
+    .note .valeur { font-size: 90px; font-weight: 900; line-height: 1; }
+    .note .sur { font-size: 38px; font-weight: 700; }
+
+    /* ---------- COMMENTAIRE / APPRÉCIATION ---------- */
+    .commentaire {
+      position: absolute;
+      left: calc(var(--carreau) * 4);
+      right: calc(var(--carreau) * 2);
+      top: 470px;
+      border: 2px solid var(--rouge);
+      border-radius: 8px;
+      padding: 16px 22px 26px;
+      color: var(--rouge);
+      background: rgba(255,255,255,.45);
+    }
+    .commentaire .titre {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      text-decoration: underline;
+    }
+    .commentaire .zone { min-height: 150px; }
+
+    /* ---------- ZONE LIBRE (pour écrire le texte du carrousel) ---------- */
+    .zone-texte {
+      position: absolute;
+      left: calc(var(--carreau) * 4);
+      right: calc(var(--carreau) * 2);
+      top: 760px;
+      bottom: 120px;
+      /* à toi de taper / poser ton texte ici dans l'éditeur vidéo */
+    }
+
+    .signature {
+      position: absolute;
+      bottom: 40px;
+      right: calc(var(--carreau) * 2);
+      font-size: 26px;
+      color: #9aa6c4;
+    }
+  </style>
+</head>
+<body>
+  <div class="feuille">
+    <div class="trou h"></div>
+    <div class="trou b"></div>
+
+    <!-- EN-TÊTE -->
+    <div class="entete">
+      <div class="ligne ligne-nom">
+        <div><span class="label">Nom :</span><span class="val"></span></div>
+        <div><span class="label">Prénom :</span><span class="val"></span></div>
+      </div>
+      <div class="ligne">
+        <span class="label">Classe :</span><span class="val"></span>
+      </div>
+    </div>
+
+    <!-- NOTE -->
+    <div class="note">
+      <div class="titre">NOTE</div>
+      <div class="valeur">&nbsp;</div>
+      <div class="sur">/ 20</div>
+    </div>
+
+    <!-- COMMENTAIRE -->
+    <div class="commentaire">
+      <div class="titre">Commentaire</div>
+      <div class="zone"></div>
+    </div>
+
+    <!-- ZONE DE TEXTE LIBRE -->
+    <div class="zone-texte"></div>
+
+    <div class="signature">copie d'élève</div>
+  </div>
+</body>
+</html>
