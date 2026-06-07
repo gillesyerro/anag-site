@@ -16,8 +16,8 @@
        Champs éditables • 📸 Mode capture nettoie l'écran.
        ============================================================ */
     :root{
-      --bleu:#2342a8; --rouge:#d11f1f; --carreau:52px;
-      --grille:#cdd7ee; --papier:#fdfdfb;
+      --bleu:#2342a8; --rouge:#d11f1f; --carreau:56px; --sous:14px;
+      --fine:#e4e9f4; --forte:#b9c6e6; --marge-col:#e08a8a; --papier:#fdfdfb;
       --manuscrit:"Caveat","Comic Sans MS","Segoe Print",cursive;
       --safe-top:160px; --safe-bottom:480px; --safe-right:130px;
     }
@@ -33,14 +33,18 @@
     body.capture .barre{display:none;}
 
     .feuille{position:relative;width:1080px;height:1920px;background-color:var(--papier);
-      background-image:linear-gradient(to right,var(--grille) 1px,transparent 1px),
-        linear-gradient(to bottom,var(--grille) 1px,transparent 1px);
-      background-size:var(--carreau) var(--carreau);
+      /* quadrillage Seyès : fines lignes + lignes fortes + verticales */
+      background-image:
+        repeating-linear-gradient(to bottom, var(--forte) 0 1px, transparent 1px var(--carreau)),
+        repeating-linear-gradient(to right,  var(--forte) 0 1px, transparent 1px var(--carreau)),
+        repeating-linear-gradient(to bottom, var(--fine) 0 1px, transparent 1px var(--sous));
       box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden;transform-origin:top center;}
     @media (max-width:1120px){.feuille{transform:scale(calc(96vw / 1080));}}
-    .feuille::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--carreau)*3);width:2px;background:var(--rouge);}
-    .trou{position:absolute;left:14px;width:26px;height:26px;border-radius:50%;background:#c7ccd4;box-shadow:inset 0 1px 2px rgba(0,0,0,.3);}
-    .trou.h{top:360px;} .trou.b{bottom:540px;}
+    .feuille::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--carreau)*3);width:2px;background:var(--marge-col);}
+    /* trous de classeur */
+    .trous{position:absolute;top:0;bottom:0;left:24px;width:34px;z-index:1;pointer-events:none;
+      background-image:radial-gradient(circle, #c7ccd4 0 13px, #aab0bb 13px 15px, transparent 15px);
+      background-size:34px 240px;background-position:center 150px;background-repeat:repeat-y;}
 
     .repere{position:absolute;pointer-events:none;z-index:5;}
     .repere.haut{top:0;left:0;right:0;height:var(--safe-top);}
@@ -89,7 +93,7 @@
   </div>
 
   <div class="feuille" id="feuille">
-    <div class="trou h"></div><div class="trou b"></div>
+    <div class="trous"></div>
     <div class="repere haut zone"></div>
     <div class="repere bas zone"></div>
     <div class="repere droite zone"></div>

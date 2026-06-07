@@ -23,8 +23,9 @@
     :root {
       --bleu: #2342a8;
       --rouge: #d11f1f;
-      --carreau: 52px;          /* gros carreaux */
-      --grille: #cdd7ee;
+      --carreau: 56px;          /* grands carreaux Seyès */
+      --sous: 14px;             /* fines lignes intérieures */
+      --fine: #e4e9f4; --forte: #b9c6e6; --marge-col: #e08a8a;
       --papier: #fdfdfb;
       --manuscrit: "Caveat", "Comic Sans MS", "Segoe Print", cursive;
 
@@ -65,10 +66,11 @@
       position: relative;
       width: 1080px; height: 1920px;
       background-color: var(--papier);
+      /* quadrillage Seyès : fines lignes + lignes fortes + verticales */
       background-image:
-        linear-gradient(to right, var(--grille) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grille) 1px, transparent 1px);
-      background-size: var(--carreau) var(--carreau);
+        repeating-linear-gradient(to bottom, var(--forte) 0 1px, transparent 1px var(--carreau)),
+        repeating-linear-gradient(to right,  var(--forte) 0 1px, transparent 1px var(--carreau)),
+        repeating-linear-gradient(to bottom, var(--fine) 0 1px, transparent 1px var(--sous));
       box-shadow: 0 10px 40px rgba(0,0,0,.25);
       overflow: hidden; transform-origin: top center;
     }
@@ -76,15 +78,15 @@
 
     .feuille::before { /* marge rouge */
       content: ""; position: absolute; top: 0; bottom: 0;
-      left: calc(var(--carreau) * 3); width: 2px; background: var(--rouge);
+      left: calc(var(--carreau) * 3); width: 2px; background: var(--marge-col);
     }
-    .trou {
-      position: absolute; left: 14px; width: 26px; height: 26px;
-      border-radius: 50%; background: #c7ccd4;
-      box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
+    /* trous de classeur */
+    .trous {
+      position: absolute; top: 0; bottom: 0; left: 24px; width: 34px;
+      z-index: 1; pointer-events: none;
+      background-image: radial-gradient(circle, #c7ccd4 0 13px, #aab0bb 13px 15px, transparent 15px);
+      background-size: 34px 240px; background-position: center 150px; background-repeat: repeat-y;
     }
-    .trou.h { top: 360px; }
-    .trou.b { bottom: 540px; } /* remonté hors de la zone légende */
 
     /* ---------- REPÈRES SAFE ZONE (cachés à la capture) ---------- */
     .repere { position: absolute; pointer-events: none; z-index: 5; }
@@ -181,8 +183,7 @@
 
   <!-- LA FEUILLE -->
   <div class="feuille" id="feuille">
-    <div class="trou h"></div>
-    <div class="trou b"></div>
+    <div class="trous"></div>
 
     <!-- Repères safe zone -->
     <div class="repere haut zone"></div>
