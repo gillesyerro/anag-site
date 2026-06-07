@@ -1,0 +1,37 @@
+name: Déployer ClicMaths (revision-app) sur GitHub Pages
+
+# Publie le contenu du dossier revision-app/ sur la branche gh-pages.
+# Côté GitHub, il faut activer une seule fois :
+#   Settings → Pages → Source : « Deploy from a branch » → gh-pages → /(root)
+# L'app sera alors en ligne sur https://<utilisateur>.github.io/anag-site/
+
+on:
+  push:
+    branches:
+      - claude/iphone-study-app-2tn0Y
+    paths:
+      - "revision-app/**"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "pages-deploy"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Publier revision-app sur gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./revision-app
+          publish_branch: gh-pages
+          force_orphan: true
