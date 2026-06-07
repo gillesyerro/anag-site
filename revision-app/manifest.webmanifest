@@ -1,0 +1,26 @@
+{
+  "name": "ClicMaths — Révisions Brevet Maths",
+  "short_name": "ClicMaths",
+  "description": "Réviser les maths du collège et le Brevet sous forme de quiz à choix multiples.",
+  "lang": "fr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#15264f",
+  "theme_color": "#1d4ed8",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
