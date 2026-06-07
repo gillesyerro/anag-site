@@ -55,7 +55,7 @@ svg += txt((Ap[0]+Cp[0])/2+18, (Ap[1]+Cp[1])/2-10, 'hyp.', {size:30, fill:ROUGE,
 
 // ---------- N° PAGE ----------
 svg += `<rect x="780" y="1370" width="70" height="60" rx="6" fill="none" stroke="${BLEU}" stroke-width="3"/>`;
-svg += txt(815, 1416, '3', {size:46, fill:BLEU, weight:700, anchor:'middle'});
+svg += txt(815, 1416, '2', {size:46, fill:BLEU, weight:700, anchor:'middle'});
 
 svg += `</svg>`;
 fs.writeFileSync('/tmp/pyth.svg', svg);
