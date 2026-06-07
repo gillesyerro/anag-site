@@ -65,10 +65,17 @@
     .pied{position:absolute;top:1370px;right:var(--safe-right);color:var(--bleu);font-family:var(--manuscrit);
       font-weight:700;font-size:46px;z-index:2;}
     .pied .num{border:2px solid var(--bleu);border-radius:6px;padding:2px 18px;}
+
+    /* FIGURE (optionnelle) */
+    .figure{position:absolute;top:540px;right:var(--safe-right);width:200px;z-index:2;text-align:center;}
+    .figure svg{width:200px;height:200px;}
+    .figure .leg{font-family:var(--manuscrit);font-size:28px;color:var(--bleu);}
+    body.sans-figure .figure{display:none;}
   </style>
 </head>
 <body>
   <div class="barre">
+    <button id="btn-figure">▢ Figure (afficher/masquer)</button>
     <button id="btn-capture">📸 Mode capture</button>
     <span class="info">Slide « valeurs approchées » • 1080×1920 • clique pour modifier</span>
   </div>
@@ -102,6 +109,21 @@
 
     <div class="bloc punch" contenteditable>Arrondir trop tôt = erreur !</div>
 
+    <!-- FIGURE optionnelle : carré ABCD, diagonale AC, angle droit en B -->
+    <div class="figure">
+      <svg viewBox="0 0 200 200">
+        <rect x="15" y="15" width="170" height="170" fill="none" stroke="#222" stroke-width="2.5"/>
+        <line x1="15" y1="15" x2="185" y2="185" stroke="#d11f1f" stroke-width="2.5"/>
+        <path d="M167 15 L167 33 L185 33" fill="none" stroke="#222" stroke-width="2"/>
+        <text x="8" y="12" font-family="Caveat" font-size="26" font-weight="700" fill="#222" text-anchor="end">A</text>
+        <text x="190" y="12" font-family="Caveat" font-size="26" font-weight="700" fill="#222">B</text>
+        <text x="190" y="198" font-family="Caveat" font-size="26" font-weight="700" fill="#222">C</text>
+        <text x="8" y="198" font-family="Caveat" font-size="26" font-weight="700" fill="#222" text-anchor="end">D</text>
+        <text x="118" y="100" font-family="Caveat" font-size="26" font-weight="700" fill="#d11f1f">d</text>
+      </svg>
+      <div class="leg">aire = 50 cm²</div>
+    </div>
+
     <div class="pied"><span class="num" contenteditable>2</span></div>
   </div>
 
@@ -109,6 +131,7 @@
     const btn=document.getElementById('btn-capture');
     btn.addEventListener('click',()=>{document.body.classList.toggle('capture');
       btn.textContent=document.body.classList.contains('capture')?'↩︎ (recharge pour revenir)':'📸 Mode capture';});
+    document.getElementById('btn-figure').addEventListener('click',()=>document.body.classList.toggle('sans-figure'));
   </script>
 </body>
 </html>

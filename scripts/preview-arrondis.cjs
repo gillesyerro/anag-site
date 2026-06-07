@@ -53,6 +53,19 @@ svg += txt(CL, 905, 'Valeur exacte :', {size:48, fill:VERT, weight:700});
 // ---------- PUNCHLINE ----------
 svg += txt(540, 1230, 'Arrondir trop tôt = erreur !', {size:54, fill:ROUGE, weight:700, anchor:'middle'});
 
+// ---------- FIGURE (optionnelle) : carré ABCD, diagonale AC, angle droit en B ----------
+const fx=748, fy=560, s=190;
+const A=[fx,fy], B=[fx+s,fy], C=[fx+s,fy+s], D=[fx,fy+s];
+svg += `<rect x="${fx}" y="${fy}" width="${s}" height="${s}" fill="none" stroke="#222" stroke-width="2.5"/>`;
+svg += line(A[0],A[1],C[0],C[1],ROUGE,2.5);                       // diagonale AC
+svg += `<path d="M${B[0]-18} ${B[1]} L${B[0]-18} ${B[1]+18} L${B[0]} ${B[1]+18}" fill="none" stroke="#222" stroke-width="2"/>`; // angle droit B
+svg += txt(A[0]-8, A[1]-8, 'A', {size:30, fill:'#222', weight:700, anchor:'end'});
+svg += txt(B[0]+8, B[1]-8, 'B', {size:30, fill:'#222', weight:700});
+svg += txt(C[0]+8, C[1]+26, 'C', {size:30, fill:'#222', weight:700});
+svg += txt(D[0]-8, D[1]+26, 'D', {size:30, fill:'#222', weight:700, anchor:'end'});
+svg += txt(fx+s/2+30, fy+s/2, 'd', {size:30, fill:ROUGE, weight:700});
+svg += txt(fx+s/2, fy+s+50, 'aire = 50 cm²', {size:28, fill:BLEU, anchor:'middle'});
+
 // ---------- N° PAGE ----------
 svg += `<rect x="780" y="1370" width="70" height="60" rx="6" fill="none" stroke="${BLEU}" stroke-width="3"/>`;
 svg += txt(815, 1416, '2', {size:46, fill:BLEU, weight:700, anchor:'middle'});
