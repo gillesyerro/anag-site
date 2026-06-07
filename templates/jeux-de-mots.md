@@ -48,3 +48,17 @@ Le **Nom + Prénom** de l'en-tête est toujours un **jeu de mots** humoristique
 | Nom | Prénom |
 |-----|--------|
 | PARIS | EST MAGIQUE |
+
+## 6. Baddie / sons du moment (Aya & co)
+
+Inspiré des chansons que les jeunes écoutent.
+
+| Nom | Prénom | Référence |
+|-----|--------|-----------|
+| COPINES | ON A TOUTES COPIÉ | Aya Nakamura – *Copines* |
+| DJADJA | Y'A PAS MOYEN QUE JE RÉVISE | Aya Nakamura – *Djadja* |
+| COMPORTEMENT | ZÉRO POINTÉ | Aya Nakamura – *Comportement* |
+| POOKIE | DU FOND DE LA CLASSE | Aya Nakamura – *Pookie* |
+| RÉSEAUX | AVANT LES RÉVIZ | Niska – *Réseaux* |
+| TOUT VA BIEN | SAUF EN MATHS | Ninho / Alonzo – *Tout va bien* |
+| LA KIFFANCE | PENDANT LE CONTRÔLE | Naps – *La kiffance* |
