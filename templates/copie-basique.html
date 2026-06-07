@@ -3,189 +3,247 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Copie basique d'élève — carrousel TikTok</title>
+  <title>Trame copie d'élève — carrousel TikTok</title>
+
+  <!-- Police manuscrite (internet requis la 1re fois) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+
   <style>
     /* ============================================================
-       COPIE BASIQUE D'ÉLÈVE — format vertical TikTok (1080 x 1920)
-       En-tête simple : Nom Prénom / Classe / Note + commentaire
-       Fond : feuille quadrillée (petits carreaux) + marge rouge
-       --------------------------------------------------------------
-       POUR EXPORTER EN IMAGE :
-       - Ouvre la page, clic droit sur la feuille > "Capture" / screenshot
-       - ou Ctrl+P > Enregistrer en PDF, puis découpe en image
-       - La feuille fait pile 1080x1920 px (ratio 9:16 TikTok)
+       TRAME COPIE D'ÉLÈVE — vertical TikTok 1080 x 1920 (9:16)
+       Tout le contenu utile est DANS la safe zone TikTok :
+         - bandeau haut réservé   : 160 px
+         - colonne droite (icônes): 130 px
+         - bas (légende/son/nav)  : 480 px
+       Bouton "repères" pour voir/masquer ces zones.
        ============================================================ */
 
     :root {
       --bleu: #2342a8;
       --rouge: #d11f1f;
-      --carreau: 30px;            /* taille d'un carreau */
-      --grille: #cdd7ee;          /* couleur du quadrillage */
-      --papier: #fdfdfb;          /* blanc cassé "vrai papier" */
+      --carreau: 30px;
+      --grille: #cdd7ee;
+      --papier: #fdfdfb;
+      --manuscrit: "Caveat", "Comic Sans MS", "Segoe Print", cursive;
+
+      /* SAFE ZONE TikTok (en px sur la feuille 1080x1920) */
+      --safe-top: 160px;
+      --safe-bottom: 480px;
+      --safe-right: 130px;
+      --safe-left: 70px;
     }
 
     * { box-sizing: border-box; }
 
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0 0 40px;
       background: #c7ccd4;
-      font-family: "Comic Sans MS", "Segoe Print", "Bradley Hand", cursive;
-      display: flex;
-      justify-content: center;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      display: flex; flex-direction: column; align-items: center;
     }
 
-    /* LA FEUILLE — 1080 x 1920 px (9:16) */
+    /* ---------- BARRE D'OUTILS (hors capture) ---------- */
+    .barre {
+      width: 1080px; max-width: 96vw;
+      margin: 18px 0 12px;
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    }
+    .barre button {
+      font: 600 16px "Segoe UI", sans-serif;
+      padding: 10px 16px;
+      border: 2px solid var(--bleu); background: #fff; color: var(--bleu);
+      border-radius: 8px; cursor: pointer;
+    }
+    .barre button:hover, .barre button.actif { background: var(--bleu); color: #fff; }
+    .barre .info { font-size: 14px; color: #555; margin-left: auto; }
+    body.capture .barre { display: none; }
+
+    /* ---------- LA FEUILLE ---------- */
     .feuille {
       position: relative;
-      width: 1080px;
-      height: 1920px;
+      width: 1080px; height: 1920px;
       background-color: var(--papier);
-      /* quadrillage petits carreaux */
       background-image:
         linear-gradient(to right, var(--grille) 1px, transparent 1px),
         linear-gradient(to bottom, var(--grille) 1px, transparent 1px);
       background-size: var(--carreau) var(--carreau);
       box-shadow: 0 10px 40px rgba(0,0,0,.25);
-      overflow: hidden;
+      overflow: hidden; transform-origin: top center;
     }
+    @media (max-width: 1120px) { .feuille { transform: scale(calc(96vw / 1080)); } }
 
-    /* marge rouge verticale (à 3 carreaux du bord) */
-    .feuille::before {
-      content: "";
-      position: absolute;
-      top: 0; bottom: 0;
-      left: calc(var(--carreau) * 3);
-      width: 2px;
-      background: var(--rouge);
+    .feuille::before { /* marge rouge */
+      content: ""; position: absolute; top: 0; bottom: 0;
+      left: calc(var(--carreau) * 3); width: 2px; background: var(--rouge);
     }
-    /* deux trous de classeur décoratifs */
     .trou {
-      position: absolute;
-      left: 14px;
-      width: 26px; height: 26px;
-      border-radius: 50%;
-      background: #c7ccd4;
+      position: absolute; left: 14px; width: 26px; height: 26px;
+      border-radius: 50%; background: #c7ccd4;
       box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
     }
     .trou.h { top: 360px; }
-    .trou.b { bottom: 360px; }
+    .trou.b { bottom: 540px; } /* remonté hors de la zone légende */
 
-    /* ---------- EN-TÊTE manuscrit ---------- */
+    /* ---------- REPÈRES SAFE ZONE (cachés à la capture) ---------- */
+    .repere { position: absolute; pointer-events: none; z-index: 5; }
+    .repere.haut   { top: 0; left: 0; right: 0; height: var(--safe-top); }
+    .repere.bas    { bottom: 0; left: 0; right: 0; height: var(--safe-bottom); }
+    .repere.droite { top: 0; bottom: 0; right: 0; width: var(--safe-right); }
+    .repere.zone   { background: rgba(209,31,31,.10); }
+    .repere.cadre  {
+      top: var(--safe-top); bottom: var(--safe-bottom);
+      left: var(--safe-left); right: var(--safe-right);
+      border: 3px dashed rgba(35,66,168,.55);
+    }
+    .repere .txt {
+      position: absolute; font: 700 22px "Segoe UI", sans-serif;
+      color: rgba(209,31,31,.7); padding: 8px 12px;
+    }
+    body.capture .repere { display: none; }
+
+    /* ---------- CHAMPS ÉDITABLES ---------- */
+    [contenteditable] { outline: none; }
+    [contenteditable]:empty:not(:focus)::before { content: attr(data-ph); color: #aab3c9; }
+    body:not(.capture) [contenteditable]:hover { background: rgba(35,66,168,.06); border-radius: 4px; }
+
+    /* ---------- EN-TÊTE (dans la safe zone) ---------- */
     .entete {
       position: absolute;
-      top: calc(var(--carreau) * 2);
+      top: var(--safe-top);
       left: calc(var(--carreau) * 4);
-      right: calc(var(--carreau) * 2);
-      color: var(--bleu);
+      right: 360px;                 /* laisse la place à la note */
+      color: var(--bleu); font-family: var(--manuscrit); z-index: 2;
     }
-
-    .ligne {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      font-size: 40px;
-      margin-bottom: 18px;
-    }
+    .ligne { display: flex; align-items: baseline; gap: 14px; font-size: 52px; margin-bottom: 14px; }
     .ligne .label { font-weight: 700; white-space: nowrap; }
-    .ligne .val {
-      flex: 1;
-      border-bottom: 2px dotted #9aa6c4;
-      min-height: 44px;
-    }
-    .ligne-nom { display: flex; gap: 40px; }
+    .ligne .val { flex: 1; min-height: 56px; border-bottom: 2px dotted #9aa6c4; }
+    .ligne-nom { display: flex; gap: 30px; }
     .ligne-nom > div { display: flex; align-items: baseline; gap: 12px; flex: 1; }
-    .ligne-nom .val { flex: 1; border-bottom: 2px dotted #9aa6c4; min-height: 44px; }
+    .ligne-nom .val { flex: 1; min-height: 56px; border-bottom: 2px dotted #9aa6c4; }
 
-    /* ---------- CASE NOTE (haut droite, encadré rouge) ---------- */
+    /* ---------- CASE NOTE (rentrée à gauche de la colonne d'icônes) ---------- */
     .note {
       position: absolute;
-      top: calc(var(--carreau) * 2);
-      right: calc(var(--carreau) * 2);
+      top: var(--safe-top);
+      right: var(--safe-right);     /* ne déborde PAS sous les icônes TikTok */
       width: 230px;
-      border: 3px solid var(--rouge);
-      border-radius: 8px;
-      padding: 14px 0 18px;
-      text-align: center;
-      color: var(--rouge);
-      background: rgba(255,255,255,.6);
+      border: 3px solid var(--rouge); border-radius: 8px;
+      padding: 10px 0 16px; text-align: center;
+      color: var(--rouge); background: rgba(255,255,255,.6);
+      font-family: var(--manuscrit); z-index: 2;
     }
-    .note .titre { font-size: 30px; font-weight: 800; letter-spacing: 1px; }
-    .note .valeur { font-size: 90px; font-weight: 900; line-height: 1; }
-    .note .sur { font-size: 38px; font-weight: 700; }
+    .note .titre { font-size: 34px; font-weight: 700; letter-spacing: 1px; }
+    .note .valeur { font-size: 96px; font-weight: 700; line-height: 1; min-height: 96px; }
+    .note .sur { font-size: 42px; font-weight: 700; }
 
-    /* ---------- COMMENTAIRE / APPRÉCIATION ---------- */
+    /* ---------- COMMENTAIRE ---------- */
     .commentaire {
       position: absolute;
       left: calc(var(--carreau) * 4);
-      right: calc(var(--carreau) * 2);
-      top: 470px;
-      border: 2px solid var(--rouge);
-      border-radius: 8px;
-      padding: 16px 22px 26px;
-      color: var(--rouge);
-      background: rgba(255,255,255,.45);
+      right: var(--safe-right);
+      top: 580px;
+      border: 2px solid var(--rouge); border-radius: 8px;
+      padding: 14px 22px 24px;
+      color: var(--rouge); background: rgba(255,255,255,.45);
+      font-family: var(--manuscrit); z-index: 2;
     }
-    .commentaire .titre {
-      font-size: 30px;
-      font-weight: 800;
-      margin-bottom: 8px;
-      text-decoration: underline;
-    }
-    .commentaire .zone { min-height: 150px; }
+    .commentaire .titre { font-size: 36px; font-weight: 700; margin-bottom: 6px; text-decoration: underline; }
+    .commentaire .zone { min-height: 150px; font-size: 44px; line-height: 1.2; }
 
-    /* ---------- ZONE LIBRE (pour écrire le texte du carrousel) ---------- */
+    /* ---------- ZONE DE TEXTE LIBRE (s'arrête à la safe zone basse) ---------- */
     .zone-texte {
       position: absolute;
       left: calc(var(--carreau) * 4);
-      right: calc(var(--carreau) * 2);
-      top: 760px;
-      bottom: 120px;
-      /* à toi de taper / poser ton texte ici dans l'éditeur vidéo */
-    }
-
-    .signature {
-      position: absolute;
-      bottom: 40px;
-      right: calc(var(--carreau) * 2);
-      font-size: 26px;
-      color: #9aa6c4;
+      right: var(--safe-right);
+      top: 920px;
+      bottom: var(--safe-bottom);
+      font-family: var(--manuscrit); font-size: 50px;
+      line-height: var(--carreau); color: var(--bleu); z-index: 2;
     }
   </style>
 </head>
 <body>
-  <div class="feuille">
+
+  <!-- BARRE D'OUTILS -->
+  <div class="barre">
+    <div class="grp" id="niveaux">
+      <button data-classe="6ème">6ème</button>
+      <button data-classe="5ème">5ème</button>
+      <button data-classe="4ème">4ème</button>
+      <button data-classe="3ème">3ème</button>
+    </div>
+    <button id="btn-reperes">👁 Repères TikTok</button>
+    <button id="btn-capture">📸 Mode capture</button>
+    <span class="info">Feuille = 1080×1920 px • contenu dans la safe zone</span>
+  </div>
+
+  <!-- LA FEUILLE -->
+  <div class="feuille" id="feuille">
     <div class="trou h"></div>
     <div class="trou b"></div>
+
+    <!-- Repères safe zone -->
+    <div class="repere haut zone"></div>
+    <div class="repere bas zone"></div>
+    <div class="repere droite zone"></div>
+    <div class="repere cadre"><span class="txt" style="top:-6px;left:6px;">zone sûre</span></div>
 
     <!-- EN-TÊTE -->
     <div class="entete">
       <div class="ligne ligne-nom">
-        <div><span class="label">Nom :</span><span class="val"></span></div>
-        <div><span class="label">Prénom :</span><span class="val"></span></div>
+        <div><span class="label">Nom :</span><span class="val" contenteditable data-ph="…"></span></div>
+        <div><span class="label">Prénom :</span><span class="val" contenteditable data-ph="…"></span></div>
       </div>
       <div class="ligne">
-        <span class="label">Classe :</span><span class="val"></span>
+        <span class="label">Classe :</span><span class="val" id="classe" contenteditable data-ph="6ème B"></span>
       </div>
     </div>
 
     <!-- NOTE -->
     <div class="note">
       <div class="titre">NOTE</div>
-      <div class="valeur">&nbsp;</div>
+      <div class="valeur" contenteditable data-ph="?">&nbsp;</div>
       <div class="sur">/ 20</div>
     </div>
 
     <!-- COMMENTAIRE -->
     <div class="commentaire">
       <div class="titre">Commentaire</div>
-      <div class="zone"></div>
+      <div class="zone" contenteditable data-ph="Appréciation du professeur…"></div>
     </div>
 
-    <!-- ZONE DE TEXTE LIBRE -->
-    <div class="zone-texte"></div>
-
-    <div class="signature">copie d'élève</div>
+    <!-- ZONE LIBRE -->
+    <div class="zone-texte" contenteditable data-ph="Écris ici le texte de ton slide…"></div>
   </div>
+
+  <script>
+    // Boutons niveau -> remplit la classe
+    const classe = document.getElementById('classe');
+    document.querySelectorAll('#niveaux button').forEach(b => {
+      b.addEventListener('click', () => {
+        classe.textContent = b.dataset.classe;
+        document.querySelectorAll('#niveaux button').forEach(x => x.classList.remove('actif'));
+        b.classList.add('actif');
+      });
+    });
+
+    // Afficher / masquer les repères safe zone
+    let reperes = true;
+    const reps = document.querySelectorAll('.repere');
+    document.getElementById('btn-reperes').addEventListener('click', () => {
+      reperes = !reperes;
+      reps.forEach(r => r.style.display = reperes ? '' : 'none');
+    });
+
+    // Mode capture : masque barre + repères
+    const btn = document.getElementById('btn-capture');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('capture');
+      btn.textContent = document.body.classList.contains('capture')
+        ? '↩︎ (recharge pour revenir)' : '📸 Mode capture';
+    });
+  </script>
 </body>
 </html>
