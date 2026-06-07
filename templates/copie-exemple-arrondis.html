@@ -57,17 +57,18 @@
 
     .bloc{position:absolute;left:calc(var(--carreau)*4);right:var(--safe-right);font-family:var(--manuscrit);z-index:2;}
     .titre{top:var(--safe-top);color:var(--rouge);font-weight:700;font-size:60px;line-height:1.05;text-decoration:underline;}
-    .enonce{top:350px;color:var(--bleu);font-size:38px;line-height:1.25;}
-    .faux{top:420px;color:var(--rouge);font-size:38px;line-height:1.32;}
-    .exact{top:780px;color:var(--vert);font-size:38px;line-height:1.32;}
-    .faux .h,.exact .h{font-weight:700;font-size:46px;text-decoration:underline;}
+    .enonce{top:340px;color:var(--bleu);font-size:36px;}
+    .etape{top:400px;color:var(--bleu);font-size:35px;line-height:1.3;}
+    .faux{top:560px;color:var(--rouge);font-size:35px;line-height:1.3;}
+    .exact{top:785px;color:var(--vert);font-size:35px;line-height:1.3;}
+    .etape .h,.faux .h,.exact .h{font-weight:700;font-size:42px;text-decoration:underline;}
     .pied{position:absolute;top:1370px;right:var(--safe-right);color:var(--bleu);font-family:var(--manuscrit);
       font-weight:700;font-size:46px;z-index:2;}
     .pied .num{border:2px solid var(--bleu);border-radius:6px;padding:2px 18px;}
 
     /* FIGURE (optionnelle) — centrée en bas */
-    .figure{position:absolute;top:1130px;left:0;right:0;z-index:2;text-align:center;}
-    .figure svg{width:170px;height:170px;}
+    .figure{position:absolute;top:1040px;left:0;right:0;z-index:2;text-align:center;}
+    .figure svg{width:150px;height:150px;}
     .figure .leg{font-family:var(--manuscrit);font-size:28px;color:var(--bleu);}
     body.sans-figure .figure{display:none;}
   </style>
@@ -91,22 +92,25 @@
 
     <div class="bloc enonce" contenteditable>Carré ABCD, aire = 50 cm² → AC exacte ?</div>
 
+    <div class="bloc etape" contenteditable>
+      <span class="h">① Calcul de AB :</span><br>
+      AB² = 50   donc   AB = √50 ≈ 7,07<br>
+      Pour Pythagore : on garde √50, pas 7,07.
+    </div>
+
     <div class="bloc faux" contenteditable>
-      <span class="h">Avec un arrondi :</span><br>
-      On a AB² = 50, donc AB ≈ 7,07.<br>
+      <span class="h">Avec l'arrondi (faux) :</span><br>
       ABC rectangle en B, d'après Pythagore :<br>
-      AC² = AB² + BC²<br>
-      AC² = 7,07² + 7,07² = 99,9698<br>
-      → FAUX : 99,9698 ≠ 100
+      AC² = AB² + BC² = 7,07² + 7,07²<br>
+      AC² = 99,9698   ≠ 100   → FAUX
     </div>
 
     <div class="bloc exact" contenteditable>
-      <span class="h">Valeur exacte :</span><br>
-      ABCD est un carré : AB = BC,<br>
-      donc AB² = BC² = 50.<br>
+      <span class="h">Valeur exacte (avec √50) :</span><br>
       ABC rectangle en B, d'après Pythagore :<br>
-      AC² = AB² + BC²<br>
-      AC² = 50 + 50 = 100  →  AC = 10 cm
+      AC² = AB² + BC² = (√50)² + (√50)²<br>
+      AC² = 50 + 50 = 100<br>
+      donc AC = 10 cm
     </div>
 
     <!-- FIGURE optionnelle : carré ABCD, diagonale AC, angle droit en B -->

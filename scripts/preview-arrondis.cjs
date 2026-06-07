@@ -1,5 +1,6 @@
-/* Aperçu PNG 1080x1920 — slide "valeurs approchées = faux", RÉDIGÉ CORRECTEMENT.
-   Carré ABCD aire 50 : arrondi -> 99,9698 (faux) vs exact -> 100 (AC = 10 cm). */
+/* Aperçu PNG 1080x1920 — slide "valeurs approchées", RÉDIGÉ CORRECTEMENT.
+   Étape AB (= √50 ≈ 7,07, on garde √50) ; arrondi -> 99,9698 (faux) ;
+   exact avec √50 -> 100 (AC = 10 cm). Carré ABCD aire 50. */
 const sharp = require('sharp');
 const fs = require('fs');
 
@@ -27,42 +28,44 @@ svg += line(MARGIN, 0, MARGIN, H, MARGE, 2);
 for (let y = 150; y <= H - 120; y += 240) svg += `<circle cx="40" cy="${y}" r="15" fill="#c7ccd4" stroke="#aab0bb" stroke-width="2"/>`;
 
 // ---------- TITRE ----------
-svg += txt(CL, 235, 'Erreur : les valeurs', {size:58, fill:ROUGE, weight:700});
-svg += txt(CL, 300, 'approchées', {size:58, fill:ROUGE, weight:700});
-svg += line(CL, 318, CL+360, 318, ROUGE, 3);
+svg += txt(CL, 232, 'Erreur : les valeurs', {size:56, fill:ROUGE, weight:700});
+svg += txt(CL, 293, 'approchées', {size:56, fill:ROUGE, weight:700});
+svg += line(CL, 311, CL+350, 311, ROUGE, 3);
 
 // ---------- ÉNONCÉ ----------
-svg += txt(CL, 380, 'Carré ABCD, aire = 50 cm² → AC exacte ?', {size:38, fill:BLEU});
+svg += txt(CL, 360, 'Carré ABCD, aire = 50 cm² → AC exacte ?', {size:36, fill:BLEU});
+
+// ---------- ① CALCUL DE AB ----------
+svg += txt(CL, 422, '① Calcul de AB :', {size:42, fill:BLEU, weight:700, style:'text-decoration:underline'});
+svg += txt(CL+10, 470, 'AB² = 50   donc   AB = √50 ≈ 7,07', {size:36, fill:BLEU});
+svg += txt(CL+10, 514, 'Pour Pythagore : on garde √50, pas 7,07.', {size:36, fill:BLEU});
 
 // ---------- AVEC ARRONDI (faux) ----------
-svg += txt(CL, 450, 'Avec un arrondi :', {size:46, fill:ROUGE, weight:700});
-[ 'On a AB² = 50, donc AB ≈ 7,07.',
-  'ABC rectangle en B, d\'après Pythagore :',
-  'AC² = AB² + BC²',
-  'AC² = 7,07² + 7,07² = 99,9698',
-  '→ FAUX : 99,9698 ≠ 100',
-].forEach((l,i)=> svg += txt(CL+10, 505 + i*50, l, {size:38, fill:ROUGE}));
+svg += txt(CL, 578, "Avec l'arrondi (faux) :", {size:42, fill:ROUGE, weight:700});
+[ 'ABC rectangle en B, d\'après Pythagore :',
+  'AC² = AB² + BC² = 7,07² + 7,07²',
+  'AC² = 99,9698   ≠ 100   → FAUX',
+].forEach((l,i)=> svg += txt(CL+10, 624 + i*44, l, {size:35, fill:ROUGE}));
 
-// ---------- VALEUR EXACTE (vrai) ----------
-svg += txt(CL, 800, 'Valeur exacte :', {size:46, fill:VERT, weight:700});
-[ 'ABCD est un carré : AB = BC,',
-  'donc AB² = BC² = 50.',
-  'ABC rectangle en B, d\'après Pythagore :',
-  'AC² = AB² + BC²',
-  'AC² = 50 + 50 = 100  →  AC = 10 cm',
-].forEach((l,i)=> svg += txt(CL+10, 855 + i*50, l, {size:38, fill:VERT}));
+// ---------- VALEUR EXACTE (avec √50) ----------
+svg += txt(CL, 800, 'Valeur exacte (avec √50) :', {size:42, fill:VERT, weight:700});
+[ 'ABC rectangle en B, d\'après Pythagore :',
+  'AC² = AB² + BC² = (√50)² + (√50)²',
+  'AC² = 50 + 50 = 100',
+  'donc AC = 10 cm',
+].forEach((l,i)=> svg += txt(CL+10, 846 + i*44, l, {size:35, fill:VERT}));
 
-// ---------- FIGURE (optionnelle) : carré ABCD, diagonale AC, angle droit en B ----------
-const s=170, fx=(W-s)/2, fy=1130;
+// ---------- FIGURE (optionnelle) : carré ABCD ----------
+const s=150, fx=(W-s)/2, fy=1040;
 const A=[fx,fy], B=[fx+s,fy], C=[fx+s,fy+s], D=[fx,fy+s];
 svg += `<rect x="${fx}" y="${fy}" width="${s}" height="${s}" fill="none" stroke="#222" stroke-width="2.5"/>`;
 svg += line(A[0],A[1],C[0],C[1],ROUGE,2.5);
-svg += `<path d="M${B[0]-18} ${B[1]} L${B[0]-18} ${B[1]+18} L${B[0]} ${B[1]+18}" fill="none" stroke="#222" stroke-width="2"/>`;
-svg += txt(A[0]-8, A[1]-8, 'A', {size:30, fill:'#222', weight:700, anchor:'end'});
-svg += txt(B[0]+8, B[1]-8, 'B', {size:30, fill:'#222', weight:700});
-svg += txt(C[0]+8, C[1]+28, 'C', {size:30, fill:'#222', weight:700});
-svg += txt(D[0]-8, D[1]+28, 'D', {size:30, fill:'#222', weight:700, anchor:'end'});
-svg += txt(fx+s+16, fy+s+28, 'aire = 50 cm²', {size:28, fill:BLEU});
+svg += `<path d="M${B[0]-16} ${B[1]} L${B[0]-16} ${B[1]+16} L${B[0]} ${B[1]+16}" fill="none" stroke="#222" stroke-width="2"/>`;
+svg += txt(A[0]-8, A[1]-8, 'A', {size:28, fill:'#222', weight:700, anchor:'end'});
+svg += txt(B[0]+8, B[1]-8, 'B', {size:28, fill:'#222', weight:700});
+svg += txt(C[0]+8, C[1]+26, 'C', {size:28, fill:'#222', weight:700});
+svg += txt(D[0]-8, D[1]+26, 'D', {size:28, fill:'#222', weight:700, anchor:'end'});
+svg += txt(fx+s+14, fy+s+26, 'aire = 50 cm²', {size:26, fill:BLEU});
 
 // ---------- N° PAGE ----------
 svg += `<rect x="780" y="1370" width="70" height="60" rx="6" fill="none" stroke="${BLEU}" stroke-width="3"/>`;
