@@ -24,11 +24,12 @@ const line = (x1,y1,x2,y2,c,w) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${
 let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
 svg += `<rect width="${W}" height="${H}" fill="${PAPIER}"/>`;
 
-// ---------- QUADRILLAGE SEYÈS (au centre seulement : blanc en haut et en bas) ----------
+// ---------- QUADRILLAGE SEYÈS ----------
+// Verticales : pleine hauteur. Horizontales : seulement au centre (blanc haut/bas).
 const GTOP = 120, GBOT = 1790;                                                // marges blanches haut/bas (~7%)
+for (let x = 0; x <= W; x += CAR)        svg += line(x, 0, x, H, FORTE, 1.2); // verticales (pleine hauteur)
 for (let y = GTOP; y <= GBOT; y += SOUS) svg += line(0, y, W, y, FINE, 1);    // fines horizontales
 for (let y = GTOP; y <= GBOT; y += CAR)  svg += line(0, y, W, y, FORTE, 1.2); // fortes horizontales
-for (let x = 0; x <= W; x += CAR)        svg += line(x, GTOP, x, GBOT, FORTE, 1.2); // verticales
 svg += line(MARGIN, 0, MARGIN, H, MARGE, 2);                                  // marge rouge (pleine hauteur)
 
 // ---------- TROUS DE CLASSEUR ----------

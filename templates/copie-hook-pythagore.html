@@ -35,11 +35,13 @@
     .feuille{position:relative;width:1080px;height:1920px;background:var(--papier);
       box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden;transform-origin:top center;}
     @media (max-width:1120px){.feuille{transform:scale(calc(96vw / 1080));}}
-    /* quadrillage Seyès au CENTRE seulement (blanc en haut et en bas) */
+    /* colonnes (verticales) : pleine hauteur */
+    .colonnes{position:absolute;left:0;right:0;top:0;bottom:0;z-index:0;
+      background-image:repeating-linear-gradient(to right, var(--forte) 0 1px, transparent 1px var(--carreau));}
+    /* lignes horizontales (Seyès) : au CENTRE seulement (blanc en haut et en bas) */
     .grille{position:absolute;left:0;right:0;top:120px;bottom:130px;z-index:0;
       background-image:
         repeating-linear-gradient(to bottom, var(--forte) 0 1px, transparent 1px var(--carreau)),
-        repeating-linear-gradient(to right,  var(--forte) 0 1px, transparent 1px var(--carreau)),
         repeating-linear-gradient(to bottom, var(--fine) 0 1px, transparent 1px var(--sous));}
     .feuille::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--carreau)*3);width:2px;background:var(--marge-col);z-index:1;}
     /* trous de classeur */
@@ -94,6 +96,7 @@
   </div>
 
   <div class="feuille" id="feuille">
+    <div class="colonnes"></div>
     <div class="grille"></div>
     <div class="trous"></div>
     <div class="repere haut zone"></div>
