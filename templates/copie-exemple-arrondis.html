@@ -58,16 +58,16 @@
     .bloc{position:absolute;left:calc(var(--carreau)*4);right:var(--safe-right);font-family:var(--manuscrit);z-index:2;}
     .titre{top:var(--safe-top);color:var(--rouge);font-weight:700;font-size:60px;line-height:1.05;text-decoration:underline;}
     .enonce{top:350px;color:var(--bleu);font-size:38px;line-height:1.25;}
-    .faux{top:430px;color:var(--rouge);font-size:38px;line-height:1.37;}
-    .exact{top:815px;color:var(--vert);font-size:38px;line-height:1.37;}
+    .faux{top:420px;color:var(--rouge);font-size:38px;line-height:1.32;}
+    .exact{top:780px;color:var(--vert);font-size:38px;line-height:1.32;}
     .faux .h,.exact .h{font-weight:700;font-size:46px;text-decoration:underline;}
     .pied{position:absolute;top:1370px;right:var(--safe-right);color:var(--bleu);font-family:var(--manuscrit);
       font-weight:700;font-size:46px;z-index:2;}
     .pied .num{border:2px solid var(--bleu);border-radius:6px;padding:2px 18px;}
 
     /* FIGURE (optionnelle) — centrée en bas */
-    .figure{position:absolute;top:1040px;left:0;right:0;z-index:2;text-align:center;}
-    .figure svg{width:190px;height:190px;}
+    .figure{position:absolute;top:1130px;left:0;right:0;z-index:2;text-align:center;}
+    .figure svg{width:170px;height:170px;}
     .figure .leg{font-family:var(--manuscrit);font-size:28px;color:var(--bleu);}
     body.sans-figure .figure{display:none;}
   </style>
@@ -102,9 +102,11 @@
 
     <div class="bloc exact" contenteditable>
       <span class="h">Valeur exacte :</span><br>
-      AB² = 50 et AB = BC (carré).<br>
-      AC² = AB² + BC² = 50 + 50<br>
-      AC² = 100   donc   AC = 10 cm
+      ABCD est un carré : AB = BC,<br>
+      donc AB² = BC² = 50.<br>
+      ABC rectangle en B, d'après Pythagore :<br>
+      AC² = AB² + BC²<br>
+      AC² = 50 + 50 = 100  →  AC = 10 cm
     </div>
 
     <!-- FIGURE optionnelle : carré ABCD, diagonale AC, angle droit en B -->

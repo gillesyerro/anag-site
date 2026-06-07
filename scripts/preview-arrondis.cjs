@@ -35,23 +35,25 @@ svg += line(CL, 318, CL+360, 318, ROUGE, 3);
 svg += txt(CL, 380, 'Carré ABCD, aire = 50 cm² → AC exacte ?', {size:38, fill:BLEU});
 
 // ---------- AVEC ARRONDI (faux) ----------
-svg += txt(CL, 460, 'Avec un arrondi :', {size:46, fill:ROUGE, weight:700});
+svg += txt(CL, 450, 'Avec un arrondi :', {size:46, fill:ROUGE, weight:700});
 [ 'On a AB² = 50, donc AB ≈ 7,07.',
   'ABC rectangle en B, d\'après Pythagore :',
   'AC² = AB² + BC²',
   'AC² = 7,07² + 7,07² = 99,9698',
   '→ FAUX : 99,9698 ≠ 100',
-].forEach((l,i)=> svg += txt(CL+10, 518 + i*52, l, {size:38, fill:ROUGE}));
+].forEach((l,i)=> svg += txt(CL+10, 505 + i*50, l, {size:38, fill:ROUGE}));
 
 // ---------- VALEUR EXACTE (vrai) ----------
-svg += txt(CL, 845, 'Valeur exacte :', {size:46, fill:VERT, weight:700});
-[ 'AB² = 50 et AB = BC (carré).',
-  'AC² = AB² + BC² = 50 + 50',
-  'AC² = 100   donc   AC = 10 cm',
-].forEach((l,i)=> svg += txt(CL+10, 903 + i*52, l, {size:38, fill:VERT}));
+svg += txt(CL, 800, 'Valeur exacte :', {size:46, fill:VERT, weight:700});
+[ 'ABCD est un carré : AB = BC,',
+  'donc AB² = BC² = 50.',
+  'ABC rectangle en B, d\'après Pythagore :',
+  'AC² = AB² + BC²',
+  'AC² = 50 + 50 = 100  →  AC = 10 cm',
+].forEach((l,i)=> svg += txt(CL+10, 855 + i*50, l, {size:38, fill:VERT}));
 
 // ---------- FIGURE (optionnelle) : carré ABCD, diagonale AC, angle droit en B ----------
-const s=180, fx=(W-s)/2, fy=1070;
+const s=170, fx=(W-s)/2, fy=1130;
 const A=[fx,fy], B=[fx+s,fy], C=[fx+s,fy+s], D=[fx,fy+s];
 svg += `<rect x="${fx}" y="${fy}" width="${s}" height="${s}" fill="none" stroke="#222" stroke-width="2.5"/>`;
 svg += line(A[0],A[1],C[0],C[1],ROUGE,2.5);
