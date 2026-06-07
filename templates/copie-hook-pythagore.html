@@ -64,7 +64,7 @@
     .ligne-nom>div{display:flex;align-items:baseline;gap:12px;}
 
     /* ESPACE COMMENTAIRE (cadre + note) */
-    .commentaire{position:absolute;top:380px;left:calc(var(--carreau)*4);right:var(--safe-right);
+    .commentaire{position:absolute;top:330px;left:calc(var(--carreau)*4);right:var(--safe-right);
       display:flex;gap:22px;border:2px solid var(--rouge);border-radius:6px;padding:18px;
       background:rgba(255,255,255,.55);font-family:var(--manuscrit);z-index:2;}
     .commentaire .note{flex:0 0 150px;border:2px solid var(--rouge);border-radius:4px;
@@ -100,8 +100,10 @@
 
     <!-- EN-TÊTE humoristique -->
     <div class="entete">
-      <div class="ligne"><span class="label">Nom :</span> <span contenteditable>ÉLÈVE</span></div>
-      <div class="ligne"><span class="label">Prénom :</span> <span contenteditable>EN DÉTRESSE</span></div>
+      <div class="ligne ligne-nom">
+        <div><span class="label">Nom :</span> <span contenteditable>ÉLÈVE</span></div>
+        <div><span class="label">Prénom :</span> <span contenteditable>EN DÉTRESSE</span></div>
+      </div>
       <div class="ligne"><span class="label">Classe :</span> <span contenteditable>4ème B</span></div>
     </div>
 

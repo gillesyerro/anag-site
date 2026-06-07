@@ -36,13 +36,13 @@ for (let y = 150; y <= H - 120; y += 240) {
   svg += `<circle cx="${hx}" cy="${y}" r="15" fill="#c7ccd4" stroke="#aab0bb" stroke-width="2"/>`;
 }
 
-// ---------- EN-TÊTE (humour, noms empilés pour rester dans la safe zone) ----------
-svg += txt(CL, 205, 'Nom : ÉLÈVE', {size:50, weight:700});
-svg += txt(CL, 267, 'Prénom : EN DÉTRESSE', {size:50, weight:700});
-svg += txt(CL, 329, 'Classe : 4ème B', {size:50, weight:700});
+// ---------- EN-TÊTE (humour) ----------
+svg += txt(CL, 215, 'Nom : ÉLÈVE', {size:50, weight:700});
+svg += txt(580, 215, 'Prénom : EN DÉTRESSE', {size:50, weight:700});
+svg += txt(CL, 285, 'Classe : 4ème B', {size:50, weight:700});
 
 // ---------- ESPACE COMMENTAIRE (cadre + note) ----------
-const bx=CL, by=370, bw=950-CL, bh=200;
+const bx=CL, by=330, bw=950-CL, bh=200;
 svg += `<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="6" fill="#ffffff" fill-opacity="0.55" stroke="${ROUGE}" stroke-width="2"/>`;
 const nx=bx+18, ny=by+22, nw=150, nh=156;
 svg += `<rect x="${nx}" y="${ny}" width="${nw}" height="${nh}" rx="4" fill="none" stroke="${ROUGE}" stroke-width="2"/>`;
