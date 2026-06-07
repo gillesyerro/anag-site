@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copie élève — Modèle Santorî</title>
+  <style>
+    /* ============================================================
+       MODÈLE DE COPIE « SANTORÎ » — tous niveaux
+       En-tête : Nom Prénom / Classe / Note / Commentaire
+       Imprimer : Ctrl+P (ou Cmd+P) — format A4
+       ============================================================ */
+
+    :root {
+      --bleu: #1d4ed8;
+      --rouge: #dc2626;
+      --gris: #94a3b8;
+      --ligne: #c7d2e8;
+      --texte: #0f172a;
+      --interligne: 9mm;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #e5e7eb;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--texte);
+    }
+
+    /* Une feuille = une page A4 */
+    .feuille {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 10mm auto;
+      padding: 14mm 14mm 18mm 14mm;
+      background: #fff;
+      box-shadow: 0 4px 18px rgba(0,0,0,.18);
+      position: relative;
+    }
+
+    /* ---------- EN-TÊTE ---------- */
+    .entete {
+      display: grid;
+      grid-template-columns: 1fr 36mm;
+      gap: 6mm;
+      border: 1.5px solid var(--texte);
+      border-radius: 4px;
+      padding: 5mm 6mm;
+      margin-bottom: 8mm;
+    }
+
+    .champs { display: flex; flex-direction: column; gap: 4.5mm; }
+
+    .ligne-champ {
+      display: flex;
+      align-items: flex-end;
+      gap: 3mm;
+      font-size: 12pt;
+    }
+    .ligne-champ .label {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .ligne-champ .trait {
+      flex: 1 1 auto;
+      border-bottom: 1px dotted var(--gris);
+      min-height: 6mm;
+    }
+    /* Nom + Prénom sur la même ligne */
+    .ligne-nom { display: flex; gap: 6mm; }
+    .ligne-nom > div { display: flex; align-items: flex-end; gap: 3mm; flex: 1; }
+    .ligne-nom .trait { flex: 1; border-bottom: 1px dotted var(--gris); min-height: 6mm; }
+
+    /* ---------- CASE NOTE ---------- */
+    .note {
+      border: 1.5px solid var(--rouge);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3mm;
+      text-align: center;
+    }
+    .note .titre {
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: .5px;
+      color: var(--rouge);
+      text-transform: uppercase;
+    }
+    .note .valeur {
+      font-size: 26pt;
+      font-weight: 800;
+      color: var(--rouge);
+      line-height: 1.1;
+      margin-top: 1mm;
+    }
+    .note .sur { font-size: 13pt; color: var(--rouge); font-weight: 600; }
+
+    /* ---------- COMMENTAIRE ---------- */
+    .commentaire {
+      border: 1.2px solid var(--bleu);
+      border-radius: 4px;
+      padding: 4mm 5mm 6mm;
+      margin-bottom: 9mm;
+    }
+    .commentaire .titre {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--bleu);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 3mm;
+    }
+    .commentaire .zone {
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(var(--interligne) - 1px),
+        var(--ligne) var(--interligne)
+      );
+      min-height: 28mm;
+    }
+
+    /* ---------- ZONE DE RÉDACTION (lignes) ---------- */
+    .copie {
+      background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(var(--interligne) - 1px),
+        var(--ligne) var(--interligne)
+      );
+      min-height: 170mm;
+      /* marge rouge à gauche, comme une vraie copie */
+      border-left: 1.2px solid var(--rouge);
+      padding-left: 8mm;
+    }
+
+    .pied {
+      position: absolute;
+      bottom: 8mm;
+      left: 14mm;
+      right: 14mm;
+      text-align: center;
+      font-size: 8pt;
+      color: var(--gris);
+    }
+
+    /* ---------- IMPRESSION ---------- */
+    @media print {
+      html, body { background: #fff; }
+      .feuille {
+        margin: 0;
+        box-shadow: none;
+        width: auto;
+        min-height: auto;
+        padding: 10mm 12mm;
+      }
+      .pied { color: #aaa; }
+      @page { size: A4; margin: 8mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="feuille">
+
+    <!-- EN-TÊTE -->
+    <div class="entete">
+      <div class="champs">
+        <div class="ligne-nom">
+          <div><span class="label">Nom :</span><span class="trait"></span></div>
+          <div><span class="label">Prénom :</span><span class="trait"></span></div>
+        </div>
+        <div class="ligne-champ">
+          <span class="label">Classe :</span><span class="trait"></span>
+        </div>
+        <div class="ligne-champ">
+          <span class="label">Matière :</span><span class="trait"></span>
+          <span class="label" style="margin-left:6mm;">Date :</span><span class="trait" style="max-width:40mm;"></span>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="titre">Note</span>
+        <span class="valeur">&nbsp;</span>
+        <span class="sur">/ 20</span>
+      </div>
+    </div>
+
+    <!-- COMMENTAIRE / APPRÉCIATION -->
+    <div class="commentaire">
+      <div class="titre">Commentaire</div>
+      <div class="zone"></div>
+    </div>
+
+    <!-- ZONE DE RÉDACTION -->
+    <div class="copie"></div>
+
+    <div class="pied">Modèle Santorî — copie élève (tous niveaux)</div>
+  </div>
+</body>
+</html>
