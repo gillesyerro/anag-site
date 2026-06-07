@@ -32,15 +32,16 @@
     .barre .info{font-size:14px;color:#555;margin-left:auto;}
     body.capture .barre{display:none;}
 
-    .feuille{position:relative;width:1080px;height:1920px;background-color:var(--papier);
-      /* quadrillage Seyès : fines lignes + lignes fortes + verticales */
+    .feuille{position:relative;width:1080px;height:1920px;background:var(--papier);
+      box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden;transform-origin:top center;}
+    @media (max-width:1120px){.feuille{transform:scale(calc(96vw / 1080));}}
+    /* quadrillage Seyès au CENTRE seulement (blanc en haut et en bas) */
+    .grille{position:absolute;left:0;right:0;top:120px;bottom:130px;z-index:0;
       background-image:
         repeating-linear-gradient(to bottom, var(--forte) 0 1px, transparent 1px var(--carreau)),
         repeating-linear-gradient(to right,  var(--forte) 0 1px, transparent 1px var(--carreau)),
-        repeating-linear-gradient(to bottom, var(--fine) 0 1px, transparent 1px var(--sous));
-      box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden;transform-origin:top center;}
-    @media (max-width:1120px){.feuille{transform:scale(calc(96vw / 1080));}}
-    .feuille::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--carreau)*3);width:2px;background:var(--marge-col);}
+        repeating-linear-gradient(to bottom, var(--fine) 0 1px, transparent 1px var(--sous));}
+    .feuille::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--carreau)*3);width:2px;background:var(--marge-col);z-index:1;}
     /* trous de classeur */
     .trous{position:absolute;top:0;bottom:0;left:24px;width:34px;z-index:1;pointer-events:none;
       background-image:radial-gradient(circle, #c7ccd4 0 13px, #aab0bb 13px 15px, transparent 15px);
@@ -64,7 +65,7 @@
     .ligne-nom>div{display:flex;align-items:baseline;gap:12px;}
 
     /* ESPACE COMMENTAIRE (cadre + note) */
-    .commentaire{position:absolute;top:330px;left:calc(var(--carreau)*4);right:var(--safe-right);
+    .commentaire{position:absolute;top:380px;left:calc(var(--carreau)*4);right:var(--safe-right);
       display:flex;gap:22px;border:2px solid var(--rouge);border-radius:6px;padding:18px;
       background:rgba(255,255,255,.55);font-family:var(--manuscrit);z-index:2;}
     .commentaire .note{flex:0 0 150px;border:2px solid var(--rouge);border-radius:4px;
@@ -93,6 +94,7 @@
   </div>
 
   <div class="feuille" id="feuille">
+    <div class="grille"></div>
     <div class="trous"></div>
     <div class="repere haut zone"></div>
     <div class="repere bas zone"></div>
@@ -100,10 +102,8 @@
 
     <!-- EN-TÊTE humoristique -->
     <div class="entete">
-      <div class="ligne ligne-nom">
-        <div><span class="label">Nom :</span> <span contenteditable>ÉLÈVE</span></div>
-        <div><span class="label">Prénom :</span> <span contenteditable>EN DÉTRESSE</span></div>
-      </div>
+      <div class="ligne"><span class="label">Nom :</span> <span contenteditable>ÉLÈVE</span></div>
+      <div class="ligne"><span class="label">Prénom :</span> <span contenteditable>EN DÉTRESSE</span></div>
       <div class="ligne"><span class="label">Classe :</span> <span contenteditable>4ème B</span></div>
     </div>
 

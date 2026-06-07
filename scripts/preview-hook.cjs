@@ -24,11 +24,12 @@ const line = (x1,y1,x2,y2,c,w) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${
 let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
 svg += `<rect width="${W}" height="${H}" fill="${PAPIER}"/>`;
 
-// ---------- QUADRILLAGE SEYÈS ----------
-for (let y = 0; y <= H; y += SOUS) svg += line(0, y, W, y, FINE, 1);          // fines horizontales
-for (let y = 0; y <= H; y += CAR)  svg += line(0, y, W, y, FORTE, 1.2);       // fortes horizontales
-for (let x = 0; x <= W; x += CAR)  svg += line(x, 0, x, H, FORTE, 1.2);       // verticales
-svg += line(MARGIN, 0, MARGIN, H, MARGE, 2);                                  // marge rouge
+// ---------- QUADRILLAGE SEYÈS (au centre seulement : blanc en haut et en bas) ----------
+const GTOP = 120, GBOT = 1790;                                                // marges blanches haut/bas (~7%)
+for (let y = GTOP; y <= GBOT; y += SOUS) svg += line(0, y, W, y, FINE, 1);    // fines horizontales
+for (let y = GTOP; y <= GBOT; y += CAR)  svg += line(0, y, W, y, FORTE, 1.2); // fortes horizontales
+for (let x = 0; x <= W; x += CAR)        svg += line(x, GTOP, x, GBOT, FORTE, 1.2); // verticales
+svg += line(MARGIN, 0, MARGIN, H, MARGE, 2);                                  // marge rouge (pleine hauteur)
 
 // ---------- TROUS DE CLASSEUR ----------
 const hx = 40;
@@ -36,13 +37,13 @@ for (let y = 150; y <= H - 120; y += 240) {
   svg += `<circle cx="${hx}" cy="${y}" r="15" fill="#c7ccd4" stroke="#aab0bb" stroke-width="2"/>`;
 }
 
-// ---------- EN-TÊTE (humour) ----------
+// ---------- EN-TÊTE (humour, noms empilés) ----------
 svg += txt(CL, 215, 'Nom : ÉLÈVE', {size:50, weight:700});
-svg += txt(580, 215, 'Prénom : EN DÉTRESSE', {size:50, weight:700});
-svg += txt(CL, 285, 'Classe : 4ème B', {size:50, weight:700});
+svg += txt(CL, 277, 'Prénom : EN DÉTRESSE', {size:50, weight:700});
+svg += txt(CL, 339, 'Classe : 4ème B', {size:50, weight:700});
 
 // ---------- ESPACE COMMENTAIRE (cadre + note) ----------
-const bx=CL, by=330, bw=950-CL, bh=200;
+const bx=CL, by=380, bw=950-CL, bh=200;
 svg += `<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="6" fill="#ffffff" fill-opacity="0.55" stroke="${ROUGE}" stroke-width="2"/>`;
 const nx=bx+18, ny=by+22, nw=150, nh=156;
 svg += `<rect x="${nx}" y="${ny}" width="${nw}" height="${nh}" rx="4" fill="none" stroke="${ROUGE}" stroke-width="2"/>`;
