@@ -14,20 +14,23 @@ function txt(x,y,s,{size=40,fill=BLEU,weight=400,anchor='start',style=''}={}) {
 }
 
 let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
+const CAR = 52;            // gros carreaux
+const MARGIN = CAR*3;      // marge rouge
+const CL = MARGIN + 30;    // contenu à droite de la marge
 svg += `<rect width="${W}" height="${H}" fill="${PAPIER}"/>`;
-svg += `<defs><pattern id="g" width="30" height="30" patternUnits="userSpaceOnUse">
-  <path d="M30 0H0V30" fill="none" stroke="${GRILLE}" stroke-width="1"/></pattern></defs>`;
+svg += `<defs><pattern id="g" width="${CAR}" height="${CAR}" patternUnits="userSpaceOnUse">
+  <path d="M${CAR} 0H0V${CAR}" fill="none" stroke="${GRILLE}" stroke-width="1"/></pattern></defs>`;
 svg += `<rect width="${W}" height="${H}" fill="url(#g)"/>`;
-svg += `<line x1="90" y1="0" x2="90" y2="${H}" stroke="${ROUGE}" stroke-width="2"/>`;
+svg += `<line x1="${MARGIN}" y1="0" x2="${MARGIN}" y2="${H}" stroke="${ROUGE}" stroke-width="2"/>`;
 svg += `<circle cx="27" cy="360" r="13" fill="#c7ccd4"/><circle cx="27" cy="1380" r="13" fill="#c7ccd4"/>`;
 
 // ---------- EN-TÊTE (humour) ----------
-svg += txt(130, 215, 'Nom : ÉLÈVE', {size:50, weight:700});
+svg += txt(CL, 215, 'Nom : ÉLÈVE', {size:50, weight:700});
 svg += txt(560, 215, 'Prénom : EN DÉTRESSE', {size:50, weight:700});
-svg += txt(130, 285, 'Classe : 4ème B', {size:50, weight:700});
+svg += txt(CL, 285, 'Classe : 4ème B', {size:50, weight:700});
 
 // ---------- ESPACE COMMENTAIRE (cadre + note) ----------
-const bx=130, by=330, bw=820, bh=200;
+const bx=CL, by=330, bw=950-bx, bh=200;
 svg += `<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="6" fill="#ffffff" fill-opacity="0.55" stroke="${ROUGE}" stroke-width="2"/>`;
 // case note à gauche
 const nx=bx+18, ny=by+22, nw=150, nh=156;
