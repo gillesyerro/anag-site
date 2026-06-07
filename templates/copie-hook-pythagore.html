@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide HOOK — Pythagore 4ème</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       SLIDE 1 (HOOK) — Pythagore 4ème — page REMPLIE, mordante
+       Format vertical TikTok 1080x1920, contenu dans la safe zone.
+       Tout est éditable (clique et tape). 📸 Mode capture = nettoie.
+       ============================================================ */
+    :root{
+      --bleu:#2342a8; --rouge:#d11f1f; --carreau:30px;
+      --grille:#cdd7ee; --papier:#fdfdfb;
+      --manuscrit:"Caveat","Comic Sans MS","Segoe Print",cursive;
+      --safe-top:160px; --safe-bottom:480px; --safe-right:130px; --safe-left:70px;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0 0 40px;background:#c7ccd4;
+      font-family:"Segoe UI",Roboto,Arial,sans-serif;
+      display:flex;flex-direction:column;align-items:center;}
+    .barre{width:1080px;max-width:96vw;margin:18px 0 12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+    .barre button{font:600 16px "Segoe UI",sans-serif;padding:10px 16px;border:2px solid var(--bleu);
+      background:#fff;color:var(--bleu);border-radius:8px;cursor:pointer;}
+    .barre button:hover{background:var(--bleu);color:#fff;}
+    .barre .info{font-size:14px;color:#555;margin-left:auto;}
+    body.capture .barre{display:none;}
+
+    .feuille{position:relative;width:1080px;height:1920px;background-color:var(--papier);
+      background-image:linear-gradient(to right,var(--grille) 1px,transparent 1px),
+        linear-gradient(to bottom,var(--grille) 1px,transparent 1px);
+      background-size:var(--carreau) var(--carreau);
+      box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden;transform-origin:top center;}
+    @media (max-width:1120px){.feuille{transform:scale(calc(96vw / 1080));}}
+    .feuille::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--carreau)*3);width:2px;background:var(--rouge);}
+    .trou{position:absolute;left:14px;width:26px;height:26px;border-radius:50%;background:#c7ccd4;box-shadow:inset 0 1px 2px rgba(0,0,0,.3);}
+    .trou.h{top:360px;} .trou.b{bottom:540px;}
+
+    /* repères safe zone */
+    .repere{position:absolute;pointer-events:none;z-index:5;}
+    .repere.haut{top:0;left:0;right:0;height:var(--safe-top);}
+    .repere.bas{bottom:0;left:0;right:0;height:var(--safe-bottom);}
+    .repere.droite{top:0;bottom:0;right:0;width:var(--safe-right);}
+    .repere.zone{background:rgba(209,31,31,.10);}
+    body.capture .repere{display:none;}
+
+    [contenteditable]{outline:none;}
+    body:not(.capture) [contenteditable]:hover{background:rgba(35,66,168,.06);border-radius:4px;}
+
+    .entete{position:absolute;top:var(--safe-top);left:calc(var(--carreau)*4);right:360px;color:var(--bleu);font-family:var(--manuscrit);z-index:2;}
+    .ligne{display:flex;align-items:baseline;gap:14px;font-size:50px;margin-bottom:12px;}
+    .ligne .label{font-weight:700;white-space:nowrap;}
+    .ligne-nom{display:flex;gap:30px;}
+    .ligne-nom>div{display:flex;align-items:baseline;gap:12px;}
+
+    .note{position:absolute;top:var(--safe-top);right:var(--safe-right);width:230px;border:3px solid var(--rouge);
+      border-radius:8px;padding:10px 0 16px;text-align:center;color:var(--rouge);background:rgba(255,255,255,.6);
+      font-family:var(--manuscrit);z-index:2;}
+    .note .titre{font-size:34px;font-weight:700;letter-spacing:1px;}
+    .note .valeur{font-size:96px;font-weight:700;line-height:1;}
+    .note .sur{font-size:42px;font-weight:700;}
+
+    /* exercice (copie élève) */
+    .exo{position:absolute;top:400px;left:calc(var(--carreau)*4);right:var(--safe-right);
+      color:var(--bleu);font-family:var(--manuscrit);z-index:2;font-size:44px;line-height:58px;}
+    .exo .titre{font-weight:700;font-size:46px;text-decoration:underline;margin-bottom:8px;}
+    .exo .faux{position:relative;display:inline-block;}
+    .exo .faux::after{content:"";position:absolute;left:-12px;right:-12px;top:50%;height:76px;
+      transform:translateY(-50%);border:4px solid var(--rouge);border-radius:50%;}
+    .exo .corr{color:var(--rouge);font-weight:700;margin-left:30px;}
+    .exo .pts{color:var(--rouge);font-weight:700;float:right;}
+
+    /* HOOK mordant */
+    .hook{position:absolute;top:940px;left:60px;right:var(--safe-right);text-align:center;z-index:2;font-family:var(--manuscrit);}
+    .hook .gros{color:var(--rouge);font-weight:700;font-size:80px;line-height:1.05;}
+    .hook .sous{color:var(--bleu);font-weight:700;font-size:42px;margin-top:14px;}
+
+    /* commentaire prof */
+    .commentaire{position:absolute;left:calc(var(--carreau)*4);right:var(--safe-right);top:1200px;
+      border:2px solid var(--rouge);border-radius:8px;padding:14px 22px 22px;color:var(--rouge);
+      background:rgba(255,255,255,.5);font-family:var(--manuscrit);z-index:2;}
+    .commentaire .titre{font-size:38px;font-weight:700;text-decoration:underline;margin-bottom:6px;}
+    .commentaire .zone{font-size:42px;line-height:1.25;}
+  </style>
+</head>
+<body>
+  <div class="barre">
+    <button id="btn-capture">📸 Mode capture</button>
+    <span class="info">Slide 1 / HOOK • 1080×1920 • clique pour modifier</span>
+  </div>
+
+  <div class="feuille" id="feuille">
+    <div class="trou h"></div><div class="trou b"></div>
+    <div class="repere haut zone"></div>
+    <div class="repere bas zone"></div>
+    <div class="repere droite zone"></div>
+
+    <!-- EN-TÊTE -->
+    <div class="entete">
+      <div class="ligne ligne-nom">
+        <div><span class="label">Nom :</span> <span contenteditable>Mathéo</span></div>
+        <div><span class="label">Prénom :</span> <span contenteditable>K.</span></div>
+      </div>
+      <div class="ligne"><span class="label">Classe :</span> <span contenteditable>4ème B</span></div>
+    </div>
+
+    <!-- NOTE -->
+    <div class="note">
+      <div class="titre">NOTE</div>
+      <div class="valeur" contenteditable>04</div>
+      <div class="sur">/ 20</div>
+    </div>
+
+    <!-- EXERCICE -->
+    <div class="exo" contenteditable>
+      <div class="titre">Exercice — Théorème de Pythagore</div>
+      ABC est un triangle rectangle en A.<br>
+      AB = 3 cm ; AC = 4 cm<br>
+      D'après Pythagore :<br>
+      BC² = AB² + AC²<br>
+      BC² = 3² + 4² = 9 + 16 = 25<br>
+      <span class="faux">BC = 25 cm</span>
+      <span class="corr">✗ BC = √25 = 5 cm !</span>
+      <span class="pts">− 4</span>
+    </div>
+
+    <!-- HOOK -->
+    <div class="hook">
+      <div class="gros" contenteditable>TU FAIS ENCORE<br>CETTE ERREUR ?</div>
+      <div class="sous" contenteditable>90% des 4ème oublient la racine carrée<br>Le vrai résultat ? ➡️ swipe</div>
+    </div>
+
+    <!-- COMMENTAIRE -->
+    <div class="commentaire">
+      <div class="titre">Commentaire</div>
+      <div class="zone" contenteditable>BC = 25 ?! Non. Tu oublies la racine carrée À CHAQUE FOIS. BC = 5 cm. Revois ta leçon !</div>
+    </div>
+  </div>
+
+  <script>
+    const btn=document.getElementById('btn-capture');
+    btn.addEventListener('click',()=>{document.body.classList.toggle('capture');
+      btn.textContent=document.body.classList.contains('capture')?'↩︎ (recharge pour revenir)':'📸 Mode capture';});
+  </script>
+</body>
+</html>
