@@ -31,6 +31,7 @@ Zones réservées par l'interface TikTok, à laisser libres de contenu :
 ## 3. Structure des slides
 
 - **Page 1 — Hook** : en-tête humoristique (Nom / Prénom / Classe, empilés), **espace commentaire** + **note /20**, gros **hook rouge** + flèche. Pas de correction sur cette page.
+  - **Nom + Prénom = jeu de mots** (toujours), clin d'œil humoristique souvent lié au chapitre ou au niveau. Ex. : `CASIO / STATISTIQUES`, `EH SUEUR`, `ÉLÈVE / EN DÉTRESSE`.
 - **Pages suivantes — Contenu** : **titre rouge souligné**, rédaction/étapes sur les lignes, encadré « à retenir », **figure optionnelle** (bouton afficher/masquer), **n° de page** + flèche.
 
 ## 4. Règles de rédaction maths (faire les choses bien)
