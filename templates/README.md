@@ -14,7 +14,7 @@ copie d'examen brevet, qui n'est pas dans ce dossier et qu'on ne modifie pas).
   - **trous de classeur** dans la marge gauche.
 - Police manuscrite **Caveat**.
 - Couleurs : **bleu `#2342a8`** (écriture élève), **rouge `#d11f1f`** (prof / faux), **vert `#1b8a3a`** (exact / correct).
-- **Variante couleur de feuille** possible pour différencier un carrousel (ex. **copie rose** pour Thalès : `--papier #fdeaf1`, `--fine #f2d4e0`, `--forte #e2a9c1`, `--marge-col #d05a7a`).
+- **Variante couleur de feuille** possible pour différencier un carrousel (ex. **copie rose** pour Thalès : `--papier #fdeaf1`, `--fine #f2d4e0`, `--forte #e2a9c1`, `--marge-col #d05a7a` ; **copie bleue** pour Trigo : `--papier #e9f0fb`, `--fine #d3e0f4`, `--forte #a9c2e6`, `--marge-col #3f63b5`).
 
 ## 2. Safe zone TikTok (très important)
 
