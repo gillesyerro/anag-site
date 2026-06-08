@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide HOOK — Thalès (copie rose)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* SLIDE 1 (HOOK) — Thalès — COPIE ROSE. Voir templates/README.md */
+    :root{
+      --bleu:#2342a8; --rouge:#d11f1f; --carreau:56px; --sous:14px;
+      --fine:#f2d4e0; --forte:#e2a9c1; --marge-col:#d05a7a; --papier:#fdeaf1; /* ROSE */
+      --manuscrit:"Caveat","Comic Sans MS","Segoe Print",cursive;
+      --safe-top:160px; --safe-bottom:480px; --safe-right:130px;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0 0 40px;background:#c7ccd4;
+      font-family:"Segoe UI",Roboto,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;}
+    .barre{width:1080px;max-width:96vw;margin:18px 0 12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+    .barre button{font:600 16px "Segoe UI",sans-serif;padding:10px 16px;border:2px solid var(--bleu);
+      background:#fff;color:var(--bleu);border-radius:8px;cursor:pointer;}
+    .barre button:hover{background:var(--bleu);color:#fff;}
+    .barre .info{font-size:14px;color:#555;margin-left:auto;}
+    body.capture .barre{display:none;}
+
+    .feuille{position:relative;width:1080px;height:1920px;background:var(--papier);
+      box-shadow:0 10px 40px rgba(0,0,0,.25);overflow:hidden;transform-origin:top center;}
+    @media (max-width:1120px){.feuille{transform:scale(calc(96vw / 1080));}}
+    .colonnes{position:absolute;left:0;right:0;top:0;bottom:0;z-index:0;
+      background-image:repeating-linear-gradient(to right, var(--forte) 0 1px, transparent 1px var(--carreau));}
+    .grille{position:absolute;left:0;right:0;top:120px;bottom:130px;z-index:0;
+      background-image:
+        repeating-linear-gradient(to bottom, var(--forte) 0 1px, transparent 1px var(--carreau)),
+        repeating-linear-gradient(to bottom, var(--fine) 0 1px, transparent 1px var(--sous));}
+    .feuille::before{content:"";position:absolute;top:0;bottom:0;left:calc(var(--carreau)*3);width:2px;background:var(--marge-col);z-index:1;}
+    .trous{position:absolute;top:0;bottom:0;left:24px;width:34px;z-index:1;pointer-events:none;
+      background-image:radial-gradient(circle, #e7c4d2 0 13px, #c98aa3 13px 15px, transparent 15px);
+      background-size:34px 240px;background-position:center 150px;background-repeat:repeat-y;}
+
+    .repere{position:absolute;pointer-events:none;z-index:5;}
+    .repere.haut{top:0;left:0;right:0;height:var(--safe-top);}
+    .repere.bas{bottom:0;left:0;right:0;height:var(--safe-bottom);}
+    .repere.droite{top:0;bottom:0;right:0;width:var(--safe-right);}
+    .repere.zone{background:rgba(209,31,31,.10);}
+    body.capture .repere{display:none;}
+
+    [contenteditable]{outline:none;}
+    body:not(.capture) [contenteditable]:hover{background:rgba(35,66,168,.06);border-radius:4px;}
+
+    .entete{position:absolute;top:var(--safe-top);left:calc(var(--carreau)*4);right:130px;color:var(--bleu);font-family:var(--manuscrit);z-index:2;}
+    .ligne{display:flex;align-items:baseline;gap:14px;font-size:50px;margin-bottom:12px;}
+    .ligne .label{font-weight:700;white-space:nowrap;}
+
+    .commentaire{position:absolute;top:380px;left:calc(var(--carreau)*4);right:var(--safe-right);
+      display:flex;gap:22px;border:2px solid var(--rouge);border-radius:6px;padding:18px;
+      background:rgba(255,255,255,.5);font-family:var(--manuscrit);z-index:2;}
+    .commentaire .note{flex:0 0 150px;border:2px solid var(--rouge);border-radius:4px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--rouge);padding:6px 0;}
+    .commentaire .note .val{font-size:74px;font-weight:700;line-height:1;}
+    .commentaire .note .sur{font-size:30px;font-weight:700;}
+    .commentaire .txt{color:var(--rouge);}
+    .commentaire .txt .titre{font-size:40px;font-weight:700;text-decoration:underline;margin-bottom:6px;}
+    .commentaire .txt .corps{font-size:40px;line-height:1.2;}
+
+    .hook{position:absolute;top:620px;left:60px;right:var(--safe-right);text-align:center;
+      color:var(--rouge);font-family:var(--manuscrit);font-weight:700;font-size:74px;line-height:1.18;z-index:2;}
+    .fleche{position:absolute;top:1020px;left:calc(var(--carreau)*4);right:var(--safe-right);
+      display:flex;align-items:center;gap:24px;color:var(--bleu);font-family:var(--manuscrit);
+      font-weight:700;font-size:56px;z-index:2;}
+    .pied{position:absolute;top:1370px;right:var(--safe-right);color:var(--bleu);font-family:var(--manuscrit);
+      font-weight:700;font-size:46px;z-index:2;}
+    .pied .num{border:2px solid var(--bleu);border-radius:6px;padding:2px 18px;}
+  </style>
+</head>
+<body>
+  <div class="barre">
+    <button id="btn-capture">📸 Mode capture</button>
+    <span class="info">Thalès — HOOK (page 1) • copie rose • 1080×1920</span>
+  </div>
+
+  <div class="feuille" id="feuille">
+    <div class="colonnes"></div>
+    <div class="grille"></div>
+    <div class="trous"></div>
+    <div class="repere haut zone"></div>
+    <div class="repere bas zone"></div>
+    <div class="repere droite zone"></div>
+
+    <div class="entete">
+      <div class="ligne"><span class="label">Nom :</span> <span contenteditable>PARIS</span></div>
+      <div class="ligne"><span class="label">Prénom :</span> <span contenteditable>EST MAGIQUE</span></div>
+      <div class="ligne"><span class="label">Classe :</span> <span contenteditable>Tanaland</span></div>
+    </div>
+
+    <div class="commentaire">
+      <div class="note"><span class="val" contenteditable>04</span><span class="sur">/ 20</span></div>
+      <div class="txt">
+        <div class="titre">Commentaire</div>
+        <div class="corps" contenteditable>Tout est à revoir... comme la saison de l'OM.</div>
+      </div>
+    </div>
+
+    <div class="hook" contenteditable>L'ERREUR SUR THALÈS<br>QUI MET TON PROF<br>EN PLS</div>
+
+    <div class="fleche">
+      <span contenteditable>La correction</span>
+      <svg width="130" height="40" viewBox="0 0 130 40">
+        <line x1="0" y1="20" x2="118" y2="20" stroke="#2342a8" stroke-width="5"/>
+        <path d="M118 20 L96 6 M118 20 L96 34" fill="none" stroke="#2342a8" stroke-width="5"/>
+      </svg>
+    </div>
+
+    <div class="pied"><span class="num" contenteditable>1</span></div>
+  </div>
+
+  <script>
+    const btn=document.getElementById('btn-capture');
+    btn.addEventListener('click',()=>{document.body.classList.toggle('capture');
+      btn.textContent=document.body.classList.contains('capture')?'↩︎ (recharge pour revenir)':'📸 Mode capture';});
+  </script>
+</body>
+</html>
