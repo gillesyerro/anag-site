@@ -4,140 +4,123 @@
 <meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Kalam:wght@400;700&family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --bg:#F4F2EC;        /* blanc cassé mat */
+    --navy:#0C1F3F;      /* bleu marine */
+    --red:#D81E27;       /* rouge PSG */
+    --grid:rgba(12,31,63,.05);
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
 
   /* Canvas 9:16 — 1080 x 1920 */
   .canvas{
     position:relative;
     width:1080px; height:1920px;
     overflow:hidden;
-    /* feuille à carreaux (cahier) */
-    background-color:#fdfdf7;
+    background-color:var(--bg);
+    /* quadrillage très atténué, sans marge */
     background-image:
-      linear-gradient(#e3e9f2 1px, transparent 1px),
-      linear-gradient(90deg, #e3e9f2 1px, transparent 1px);
-    background-size:46px 46px;
-    font-family:'Kalam', cursive;
-  }
-  /* marge rouge du cahier */
-  .canvas::before{
-    content:"";
-    position:absolute; top:0; bottom:0; left:96px;
-    width:3px; background:#e8868a;
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:60px 60px;
+    font-family:'Montserrat', sans-serif;
+    color:var(--navy);
   }
 
-  /* ---- TikTok SAFE ZONE ----
-     haut ~250px / bas ~520px / droite ~200px (icônes) / gauche ~70px */
+  /* ---- TikTok SAFE ZONE : haut ~230 / bas ~520 / droite ~150 ---- */
   .safe{
     position:absolute;
-    top:250px; left:70px; right:200px; bottom:520px;
-    display:flex; flex-direction:column;
-    align-items:center;
+    top:235px; left:60px; right:150px;
+    display:flex; flex-direction:column; align-items:center;
     text-align:center;
   }
 
-  /* Bandeau titre entouré au feutre */
+  /* 1. Macaron BREVET 2026 */
   .badge{
-    font-family:'Permanent Marker', cursive;
-    font-size:74px; color:#c0392b;
-    letter-spacing:2px;
-    transform:rotate(-3deg);
-    position:relative;
-    padding:6px 30px;
-    margin-bottom:18px;
-  }
-  .badge::after{
-    content:""; position:absolute; inset:-14px -10px;
-    border:5px solid #c0392b; border-radius:50%/60%;
-    transform:rotate(2deg);
+    font-family:'Anton', sans-serif;
+    font-size:42px; letter-spacing:3px;
+    color:#fff; background:var(--navy);
+    padding:16px 40px; border-radius:999px;
+    border:4px solid var(--red);
+    box-shadow:0 8px 18px rgba(12,31,63,.18);
+    margin-bottom:34px;
   }
 
+  /* 2. Accroche */
   .accroche{
-    font-family:'Kalam', cursive; font-weight:700;
-    font-size:46px; color:#11214a; line-height:1.15;
-    margin-bottom:6px;
+    font-weight:900; font-size:54px; line-height:1.12;
+    letter-spacing:-.5px; max-width:820px;
+    margin-bottom:30px;
   }
-  .accroche .fou{ color:#c0392b; text-decoration:underline wavy #c0392b; }
+  .accroche .red{ color:var(--red); }
 
-  /* Ligne des deux produits */
-  .produits{
+  /* 3. Équation détourée */
+  .eq{
     display:flex; align-items:center; justify-content:center;
-    gap:6px; margin:14px 0 4px;
+    gap:18px; margin-bottom:6px; width:100%;
   }
-  .produits img{ width:280px; height:280px; object-fit:contain;
-    filter:drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
-  .echarpe-wrap{ width:300px; }
-  .echarpe-wrap img{ width:300px; height:200px; transform:rotate(-6deg); }
-  .signe{ font-family:'Anton',sans-serif; font-size:90px; color:#11214a; }
+  .eq img{
+    filter:drop-shadow(0 10px 14px rgba(12,31,63,.18));  /* relief doux */
+  }
+  .maillot{ width:300px; height:330px; object-fit:contain; }
+  .echarpe{ width:340px; height:240px; object-fit:contain; transform:rotate(-5deg); }
+
+  /* pastille "+" en relief */
+  .plus{
+    flex:0 0 auto;
+    width:96px; height:96px; border-radius:50%;
+    background:var(--navy); color:#fff;
+    font-family:'Anton',sans-serif; font-size:72px; line-height:96px;
+    box-shadow:0 8px 16px rgba(12,31,63,.22);
+  }
 
   .total{
     font-family:'Anton', sans-serif;
-    font-size:128px; color:#c0392b; line-height:1;
-    transform:rotate(-2deg);
-    margin:2px 0 26px;
-    text-shadow:2px 2px 0 rgba(0,0,0,.08);
+    font-size:172px; line-height:1; color:var(--navy);
+    margin:6px 0 40px;
   }
-  .total span{ color:#11214a; }
 
-  /* Indice manuscrit */
+  /* 4. Indice */
   .indice{
-    font-family:'Kalam', cursive; font-weight:700;
-    font-size:50px; color:#11214a; line-height:1.25;
-    max-width:760px; margin-bottom:40px;
+    font-weight:800; font-size:50px; line-height:1.25;
+    max-width:780px; margin-bottom:42px;
   }
-  .indice b{ color:#c0392b; }
+  .indice .red{ color:var(--red); }
 
-  /* Calcul griffonné */
-  .calcul{
-    font-family:'Permanent Marker', cursive;
-    font-size:44px; color:#2c4a8f;
+  /* 5. Question — bloc rouge qui ferme le visuel */
+  .closer{
+    background:var(--red); color:#fff;
+    font-weight:900; font-size:70px; line-height:1.1;
+    letter-spacing:-.5px;
+    padding:34px 56px; border-radius:28px;
+    box-shadow:0 12px 26px rgba(216,30,39,.30);
     transform:rotate(-1.5deg);
-    margin:4px 0 26px;
-    opacity:.85;
   }
-
-  .question{
-    font-family:'Anton', sans-serif;
-    font-size:78px; color:#11214a; line-height:1.05;
-    transform:rotate(-1deg);
-  }
-  .question em{ color:#c0392b; font-style:normal; }
-
-  .underline{
-    width:430px; height:14px; margin-top:6px;
-    background:#c0392b;
-    border-radius:50%;
-    transform:rotate(-1deg);
-    opacity:.85;
-  }
-
-  /* repère visuel safe zone (désactivé au rendu) */
-  .guide{ display:none; position:absolute; top:250px; left:70px; right:200px; bottom:520px; border:2px dashed #f00; }
 </style>
 </head>
 <body>
   <div class="canvas">
     <div class="safe">
+
       <div class="badge">BREVET 2026</div>
 
-      <div class="accroche">L'énigme qui rend <span class="fou">fou</span> tout<br>le Parc des Princes 😱</div>
+      <div class="accroche">L'énigme qui rend <span class="red">fou</span><br>le Parc des Princes 😱</div>
 
-      <div class="produits">
-        <img src="maillot.jpeg" alt="maillot PSG">
-        <div class="signe">+</div>
-        <div class="echarpe-wrap"><img src="echarpe.jpeg" alt="écharpe Champions"></div>
+      <div class="eq">
+        <img class="maillot" src="maillot.png" alt="maillot PSG">
+        <div class="plus">+</div>
+        <img class="echarpe" src="echarpe.png" alt="écharpe Champions">
       </div>
 
-      <div class="total">= 55 <span>€</span></div>
+      <div class="total">= 55 €</div>
 
-      <div class="indice">Le maillot coûte <b>5 € de plus</b><br>que l'écharpe.</div>
+      <div class="indice">Le maillot coûte <span class="red">5 € de plus</span> que l'écharpe.</div>
 
-      <div class="question">Combien coûte<br><em>l'écharpe&nbsp;?</em></div>
-      <div class="underline"></div>
+      <div class="closer">Combien coûte l'écharpe&nbsp;?</div>
+
     </div>
-    <div class="guide"></div>
   </div>
 </body>
 </html>
