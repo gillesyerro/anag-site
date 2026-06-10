@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Kalam:wght@400;700&family=Anton&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  /* Canvas 9:16 — 1080 x 1920 */
+  .canvas{
+    position:relative;
+    width:1080px; height:1920px;
+    overflow:hidden;
+    /* feuille à carreaux (cahier) */
+    background-color:#fdfdf7;
+    background-image:
+      linear-gradient(#e3e9f2 1px, transparent 1px),
+      linear-gradient(90deg, #e3e9f2 1px, transparent 1px);
+    background-size:46px 46px;
+    font-family:'Kalam', cursive;
+  }
+  /* marge rouge du cahier */
+  .canvas::before{
+    content:"";
+    position:absolute; top:0; bottom:0; left:96px;
+    width:3px; background:#e8868a;
+  }
+
+  /* ---- TikTok SAFE ZONE ----
+     haut ~250px / bas ~520px / droite ~200px (icônes) / gauche ~70px */
+  .safe{
+    position:absolute;
+    top:250px; left:70px; right:200px; bottom:520px;
+    display:flex; flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+  /* Bandeau titre entouré au feutre */
+  .badge{
+    font-family:'Permanent Marker', cursive;
+    font-size:74px; color:#c0392b;
+    letter-spacing:2px;
+    transform:rotate(-3deg);
+    position:relative;
+    padding:6px 30px;
+    margin-bottom:18px;
+  }
+  .badge::after{
+    content:""; position:absolute; inset:-14px -10px;
+    border:5px solid #c0392b; border-radius:50%/60%;
+    transform:rotate(2deg);
+  }
+
+  .accroche{
+    font-family:'Kalam', cursive; font-weight:700;
+    font-size:46px; color:#11214a; line-height:1.15;
+    margin-bottom:6px;
+  }
+  .accroche .fou{ color:#c0392b; text-decoration:underline wavy #c0392b; }
+
+  /* Ligne des deux produits */
+  .produits{
+    display:flex; align-items:center; justify-content:center;
+    gap:6px; margin:14px 0 4px;
+  }
+  .produits img{ width:280px; height:280px; object-fit:contain;
+    filter:drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
+  .echarpe-wrap{ width:300px; }
+  .echarpe-wrap img{ width:300px; height:200px; transform:rotate(-6deg); }
+  .signe{ font-family:'Anton',sans-serif; font-size:90px; color:#11214a; }
+
+  .total{
+    font-family:'Anton', sans-serif;
+    font-size:128px; color:#c0392b; line-height:1;
+    transform:rotate(-2deg);
+    margin:2px 0 26px;
+    text-shadow:2px 2px 0 rgba(0,0,0,.08);
+  }
+  .total span{ color:#11214a; }
+
+  /* Indice manuscrit */
+  .indice{
+    font-family:'Kalam', cursive; font-weight:700;
+    font-size:50px; color:#11214a; line-height:1.25;
+    max-width:760px; margin-bottom:40px;
+  }
+  .indice b{ color:#c0392b; }
+
+  /* Calcul griffonné */
+  .calcul{
+    font-family:'Permanent Marker', cursive;
+    font-size:44px; color:#2c4a8f;
+    transform:rotate(-1.5deg);
+    margin:4px 0 26px;
+    opacity:.85;
+  }
+
+  .question{
+    font-family:'Anton', sans-serif;
+    font-size:78px; color:#11214a; line-height:1.05;
+    transform:rotate(-1deg);
+  }
+  .question em{ color:#c0392b; font-style:normal; }
+
+  .underline{
+    width:430px; height:14px; margin-top:6px;
+    background:#c0392b;
+    border-radius:50%;
+    transform:rotate(-1deg);
+    opacity:.85;
+  }
+
+  /* repère visuel safe zone (désactivé au rendu) */
+  .guide{ display:none; position:absolute; top:250px; left:70px; right:200px; bottom:520px; border:2px dashed #f00; }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="safe">
+      <div class="badge">BREVET 2026</div>
+
+      <div class="accroche">L'énigme qui rend <span class="fou">fou</span> tout<br>le Parc des Princes 😱</div>
+
+      <div class="produits">
+        <img src="maillot.jpeg" alt="maillot PSG">
+        <div class="signe">+</div>
+        <div class="echarpe-wrap"><img src="echarpe.jpeg" alt="écharpe Champions"></div>
+      </div>
+
+      <div class="total">= 55 <span>€</span></div>
+
+      <div class="indice">Le maillot coûte <b>5 € de plus</b><br>que l'écharpe.</div>
+
+      <div class="question">Combien coûte<br><em>l'écharpe&nbsp;?</em></div>
+      <div class="underline"></div>
+    </div>
+    <div class="guide"></div>
+  </div>
+</body>
+</html>
